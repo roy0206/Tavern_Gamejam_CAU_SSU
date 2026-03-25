@@ -1,9 +1,9 @@
 using UnityEngine;
 
 [CreateAssetMenu(
-    fileName = "SceneEntryConfig",
-    menuName = "SceneController/SceneEntryConfig")]
-public class SceneEntryConfig : ScriptableObject
+    fileName = "SceneSO",
+    menuName = "SceneSO")]
+public class SceneSO : ScriptableObject
 {
 
     [Header("씬 설정")]
