@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class MonoThing : MonoBehaviour
 {
-    List<Module> _modules;
+    List<Module> _modules = new();
+    public Rigidbody2D Rigidbody => rigidbody;
     new protected Rigidbody2D rigidbody;
+    public Collider2D Collider => collider;
     new protected Collider2D collider;
+    public Animator Animator => animator;
     protected Animator animator;
+    public SpriteRenderer SpriteRenderer => spriteRenderer;
     protected SpriteRenderer spriteRenderer;
 
 
-    private void Awake()
+    protected void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
@@ -19,24 +23,26 @@ public class MonoThing : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void Update()
+    protected void Update()
     {
         foreach (var module in _modules) module.OnUpdate();
     }
-    private void LateUpdate()
+    protected void LateUpdate()
     {
-        foreach (var module in _modules) module.LateUpdate();
+        foreach (var module in _modules) module.OnLateUpdate();
+    }
+    protected void FixedUpdate()
+    {
+        foreach (var module in _modules) module.OnFixedUpdate();
     }
 
-    public Module AddModule<T>() where T : Module
+    public Module AddModule(Module newModule)
     {
-        if (GetModule<T>() != null) return null;
-        T newModule = Activator.CreateInstance<T>();
         newModule.OnAdded();
         _modules.Add(newModule);
         return newModule;
     }
-    public Module GetModule<T>() where T : Module
+    public T GetModule<T>() where T : Module
     {
         return (T)_modules.Find(module => module is T);
     }

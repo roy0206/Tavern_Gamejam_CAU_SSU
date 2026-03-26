@@ -16,8 +16,8 @@ public abstract class Module
     }
 
     // Lifecycle
-    public virtual void Update() { if (!isInit) return; }
-    public virtual void LateUpdate() { if (!isInit) return; }
+    public virtual void OnFixedUpdate() { if (!isInit) return; }
+    public virtual void OnLateUpdate() { if (!isInit) return; }
     public virtual void OnAdded() { if (!isInit) return; }
     public virtual void OnUpdate() { if (!isInit) return; }
     public virtual void OnRemoved() { if (!isInit) return; }
