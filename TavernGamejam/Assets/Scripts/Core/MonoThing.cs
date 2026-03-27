@@ -65,4 +65,8 @@ public class MonoThing : MonoBehaviour
         m.OnRemoved();
         _modules.Remove(m);
     }
+    private void OnDestroy()
+    {
+        foreach (var module in _modules) module.OnRemoved();
+    }
 }
