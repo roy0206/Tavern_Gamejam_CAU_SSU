@@ -8,7 +8,10 @@ public class Piranha : Entity_baseclass
     float MaxSpeed = 200f;
     float Power = 20f;
     float Radius = 5f;
+    float moveTimer;
     bool FindPlayer = false;
+
+    Vector2 moveDir;
     Vector2 PiranhatoPlayerDir;
     Rigidbody2D rb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -40,7 +43,18 @@ public class Piranha : Entity_baseclass
 
     void idle()
     {
-
+        rb.linearVelocity *= 0.98f;
+        moveTimer -= Time.deltaTime;
+        if (moveTimer <= 0)
+        {
+            moveTimer = Random.Range(0.25f, 0.75f);
+            moveDir = new Vector2(
+                Random.Range(-1f, 1f),
+                Random.Range(-0.05f, 0.05f)
+            ).normalized;
+        }
+        rb.AddForce(moveDir * (Power * 0.3f));
+        rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, Power * 0.4f);
     }
     void OnDrawGizmos()
     {
