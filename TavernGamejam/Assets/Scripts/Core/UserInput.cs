@@ -12,6 +12,10 @@ public class UserInput : Singleton<UserInput>
     public Action OnMouseUp;
     public Action OnMouseHold;
 
+    public Vector2 MoveDirection => new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+    public Vector2 MoveDirectionRaw => new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+
+
     void Update()
     {
         HandleKeyboard();
