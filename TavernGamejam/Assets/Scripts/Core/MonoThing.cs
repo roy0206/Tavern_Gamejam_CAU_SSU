@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonoThing : MonoBehaviour
+public class MonoThing : MonoBehaviour, ISceneEventListener
 {
     List<Module> _modules = new();
     public Rigidbody2D Rigidbody => rigidbody;
@@ -65,8 +65,13 @@ public class MonoThing : MonoBehaviour
         m.OnRemoved();
         _modules.Remove(m);
     }
-    private void OnDestroy()
+
+    public void OnSceneLoadStart(string sceneName)
     {
         foreach (var module in _modules) module.OnRemoved();
+    }
+
+    public void OnSceneLoadComplete(string sceneName)
+    {
     }
 }
