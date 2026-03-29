@@ -1,13 +1,10 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
-public class Entity_baseclass : MonoThing
+public class plastic_bag : Entity_baseclass
 {
-   Camera cam;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
         
     }
 
@@ -16,6 +13,4 @@ public class Entity_baseclass : MonoThing
     {
         
     }
-
-
 }
