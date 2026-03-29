@@ -14,7 +14,7 @@ public class PlayerLandState : State<Player>
 
     public override void Execute(Player player)
     {
-        if (player.transform.position.y < player.SurfaceLevel)
+        if (Physics2D.OverlapCircle(player.transform.position, 0.1f, LayerMask.GetMask("Water")))
         {
             player.GetModule<StateMachine<Player>>().ChangeState("Water");
         }

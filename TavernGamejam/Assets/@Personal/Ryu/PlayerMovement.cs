@@ -30,6 +30,7 @@ public class PlayerMovement : Module
         player.Rigidbody.freezeRotation = true;
         player.Rigidbody.linearDamping = 0;
         player.transform.DORotate(new Vector3(0, 0, 0), 1f);
+        player.Animator.SetBool("Swim", false);
     }
 
     public void SetWater()
@@ -41,6 +42,8 @@ public class PlayerMovement : Module
         onLand = false;
         player.Rigidbody.freezeRotation = false;
         player.Rigidbody.linearDamping = 4;
+        SitUp();
+        player.Animator.SetBool("Walk", false);
     }
 
     
@@ -49,6 +52,9 @@ public class PlayerMovement : Module
         if (!onLand) return;
         float moveX = new Vector2(UserInput.Instance.MoveDirectionRaw.x, 0).normalized.x * TimeManager.TImeScale * player.BaseSpeed * (isSit? 0.6f : 1);
         player.Rigidbody.linearVelocity = new Vector2(moveX, player.Rigidbody.linearVelocity.y);
+
+        if(Mathf.Abs(moveX)>0) player.Animator.SetBool("Walk", true);
+        else player.Animator.SetBool("Walk", false);
     }
     void WaterMove()
     {
@@ -60,7 +66,15 @@ public class PlayerMovement : Module
             Quaternion targetRot = Quaternion.Euler(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90);
             player.transform.DORotateQuaternion(targetRot, 0.5f);
             player.Rigidbody.AddForce(dir * player.BaseSpeed * TimeManager.TImeScale * 0.1f, ForceMode2D.Impulse);
+            player.Animator.SetBool("Swim", true);
         }
+        else
+        {
+            player.Animator.SetBool("Swim", false);
+        }
+        if (dir.x < 0) player.SpriteRenderer.flipX = true;
+        else if(dir.x > 0) player.SpriteRenderer.flipX = false;
+
         Float();
     }
 
@@ -77,6 +91,7 @@ public class PlayerMovement : Module
         {
             player.Rigidbody.AddForce(player.transform.up * player.DashPower, ForceMode2D.Impulse);
             dashCurtime = 0;
+            player.Animator.SetTrigger("Dash");
         }
     }
 
