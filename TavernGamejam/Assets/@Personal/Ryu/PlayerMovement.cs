@@ -71,7 +71,6 @@ public class PlayerMovement : Module
     void Float()
     {
         float floatForce = Mathf.Abs(Mathf.Cos((player.transform.rotation.eulerAngles.z + 90) * Mathf.Deg2Rad) * playerHeight) * 5 + 10;
-        Debug.Log(floatForce);
         player.Rigidbody.AddForce(Vector2.up * 10, ForceMode2D.Force);
     }
 }

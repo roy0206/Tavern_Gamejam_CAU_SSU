@@ -16,6 +16,8 @@ public class Player : MonoThing
     {
         base.Awake();
         AddModule(new PlayerMovement(this)).Init();
+        AddModule(new Oxygen(this)).Init(100f);
+        AddModule(new Effector(this)).Init();
         AddModule(new StateMachine<Player>(this)).Init(
             new Dictionary<string, State<Player>>(){
                 {"Land" , new PlayerLandState() },
@@ -29,5 +31,11 @@ public class Player : MonoThing
     new protected void Update()
     {
         base.Update();
+    }
+
+    public void Dead()
+    {
+        Debug.Log("PlayerHasDead");
+        GetModule<StateMachine<Player>>().ChangeState("Dead");
     }
 }
