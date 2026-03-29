@@ -6,6 +6,7 @@ public class PlayerMovement : Module
     Player player;
     float playerHeight;
     bool onLand;
+    bool isSit;
     float dashCurtime = 0;
     public PlayerMovement(MonoThing thing) : base(thing) { player = (Player)thing; onLand = true; playerHeight = ((CapsuleCollider2D)player.Collider).size.y; }
 
@@ -23,27 +24,37 @@ public class PlayerMovement : Module
     {
         UserInput.Instance.UnbindKeyDown(KeyCode.Space, Dash);
         UserInput.Instance.BindKeyDown(KeyCode.Space, Jump);
+        UserInput.Instance.BindKeyDown(KeyCode.S, SitDown);
+        UserInput.Instance.BindKeyUp(KeyCode.S, SitUp);
         onLand = true;
         player.Rigidbody.freezeRotation = true;
         player.Rigidbody.linearDamping = 0;
         player.transform.DORotate(new Vector3(0, 0, 0), 1f);
+        player.Animator.SetBool("Swim", false);
     }
 
     public void SetWater()
     {
         UserInput.Instance.UnbindKeyDown(KeyCode.Space, Jump);
         UserInput.Instance.BindKeyDown(KeyCode.Space, Dash);
+        UserInput.Instance.UnbindKeyDown(KeyCode.S, SitDown);
+        UserInput.Instance.UnbindKeyUp(KeyCode.S, SitUp);
         onLand = false;
         player.Rigidbody.freezeRotation = false;
         player.Rigidbody.linearDamping = 4;
+        SitUp();
+        player.Animator.SetBool("Walk", false);
     }
 
     
     void LandMove()
     {
         if (!onLand) return;
-        float moveX = new Vector2(UserInput.Instance.MoveDirectionRaw.x, 0).normalized.x * TimeManager.TImeScale * player.BaseSpeed;
+        float moveX = new Vector2(UserInput.Instance.MoveDirectionRaw.x, 0).normalized.x * TimeManager.TImeScale * player.BaseSpeed * (isSit? 0.6f : 1);
         player.Rigidbody.linearVelocity = new Vector2(moveX, player.Rigidbody.linearVelocity.y);
+
+        if(Mathf.Abs(moveX)>0) player.Animator.SetBool("Walk", true);
+        else player.Animator.SetBool("Walk", false);
     }
     void WaterMove()
     {
@@ -55,7 +66,15 @@ public class PlayerMovement : Module
             Quaternion targetRot = Quaternion.Euler(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90);
             player.transform.DORotateQuaternion(targetRot, 0.5f);
             player.Rigidbody.AddForce(dir * player.BaseSpeed * TimeManager.TImeScale * 0.1f, ForceMode2D.Impulse);
+            player.Animator.SetBool("Swim", true);
         }
+        else
+        {
+            player.Animator.SetBool("Swim", false);
+        }
+        if (dir.x < 0) player.SpriteRenderer.flipX = true;
+        else if(dir.x > 0) player.SpriteRenderer.flipX = false;
+
         Float();
     }
 
@@ -72,14 +91,28 @@ public class PlayerMovement : Module
         {
             player.Rigidbody.AddForce(player.transform.up * player.DashPower, ForceMode2D.Impulse);
             dashCurtime = 0;
+            player.Animator.SetTrigger("Dash");
         }
     }
 
+    public void SitDown()
+    {
+        isSit = true;
+        ((CapsuleCollider2D)player.Collider).size = new Vector2(1, 1.5f);
+    }
+
+    public void SitUp()
+    {
+        isSit = false;
+        ((CapsuleCollider2D)player.Collider).size = new Vector2(1, 2f);
+    }
     public override void OnRemoved()
     {
         base.OnRemoved();
         UserInput.Instance.UnbindKeyDown(KeyCode.Space, Jump);
         UserInput.Instance.UnbindKeyDown(KeyCode.Space, Dash);
+        UserInput.Instance.UnbindKeyDown(KeyCode.S, SitDown);
+        UserInput.Instance.UnbindKeyUp(KeyCode.S, SitUp);
     }
 
 
