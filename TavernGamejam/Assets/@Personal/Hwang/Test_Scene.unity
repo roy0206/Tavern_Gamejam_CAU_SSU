@@ -181,7 +181,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -468,6 +468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d7154c60139d94a98cbc4196fd2576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Piranha
+  PlayerBlood: 0
 --- !u!60 &2076879942
 PolygonCollider2D:
   m_ObjectHideFlags: 0
