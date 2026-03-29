@@ -6,6 +6,7 @@ public class PlayerMovement : Module
     Player player;
     float playerHeight;
     bool onLand;
+    bool isSit;
     float dashCurtime = 0;
     public PlayerMovement(MonoThing thing) : base(thing) { player = (Player)thing; onLand = true; playerHeight = ((CapsuleCollider2D)player.Collider).size.y; }
 
@@ -23,6 +24,8 @@ public class PlayerMovement : Module
     {
         UserInput.Instance.UnbindKeyDown(KeyCode.Space, Dash);
         UserInput.Instance.BindKeyDown(KeyCode.Space, Jump);
+        UserInput.Instance.BindKeyDown(KeyCode.S, SitDown);
+        UserInput.Instance.BindKeyUp(KeyCode.S, SitUp);
         onLand = true;
         player.Rigidbody.freezeRotation = true;
         player.Rigidbody.linearDamping = 0;
@@ -33,6 +36,8 @@ public class PlayerMovement : Module
     {
         UserInput.Instance.UnbindKeyDown(KeyCode.Space, Jump);
         UserInput.Instance.BindKeyDown(KeyCode.Space, Dash);
+        UserInput.Instance.UnbindKeyDown(KeyCode.S, SitDown);
+        UserInput.Instance.UnbindKeyUp(KeyCode.S, SitUp);
         onLand = false;
         player.Rigidbody.freezeRotation = false;
         player.Rigidbody.linearDamping = 4;
@@ -42,7 +47,7 @@ public class PlayerMovement : Module
     void LandMove()
     {
         if (!onLand) return;
-        float moveX = new Vector2(UserInput.Instance.MoveDirectionRaw.x, 0).normalized.x * TimeManager.TImeScale * player.BaseSpeed;
+        float moveX = new Vector2(UserInput.Instance.MoveDirectionRaw.x, 0).normalized.x * TimeManager.TImeScale * player.BaseSpeed * (isSit? 0.6f : 1);
         player.Rigidbody.linearVelocity = new Vector2(moveX, player.Rigidbody.linearVelocity.y);
     }
     void WaterMove()
@@ -75,11 +80,24 @@ public class PlayerMovement : Module
         }
     }
 
+    public void SitDown()
+    {
+        isSit = true;
+        ((CapsuleCollider2D)player.Collider).size = new Vector2(1, 1.5f);
+    }
+
+    public void SitUp()
+    {
+        isSit = false;
+        ((CapsuleCollider2D)player.Collider).size = new Vector2(1, 2f);
+    }
     public override void OnRemoved()
     {
         base.OnRemoved();
         UserInput.Instance.UnbindKeyDown(KeyCode.Space, Jump);
         UserInput.Instance.UnbindKeyDown(KeyCode.Space, Dash);
+        UserInput.Instance.UnbindKeyDown(KeyCode.S, SitDown);
+        UserInput.Instance.UnbindKeyUp(KeyCode.S, SitUp);
     }
 
 
