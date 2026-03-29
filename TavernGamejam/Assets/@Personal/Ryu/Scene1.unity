@@ -473,6 +473,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   jumpPower: 5
+  dashPower: 10
+  dashCooltime: 3
   baseSpeed: 5
   surfaceLevel: 0
 --- !u!70 &1165884086

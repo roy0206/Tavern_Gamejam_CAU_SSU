@@ -7,6 +7,24 @@ public class PlayerDeadState : State<Player>
         player.RemoveModule<PlayerMovement>();
         player.RemoveModule<Oxygen>();
         Debug.Log("PlayerHasDead");
+
+        switch (player.DeathType)
+        {
+            case DeathType.Suffocated:
+                player.Rigidbody.freezeRotation = false;
+                break;
+            case DeathType.Bitten:
+                //Blood
+                //SplitBody
+                break;
+            case DeathType.Stab:
+                //Blood
+                break;
+            case DeathType.Ground:
+                //LotOfBlood
+                //BodyDisapear
+                break;
+        }
     }
 
     public override void Execute(Player player)

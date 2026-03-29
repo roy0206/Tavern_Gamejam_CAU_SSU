@@ -6,6 +6,7 @@ public class PlayerMovement : Module
     Player player;
     float playerHeight;
     bool onLand;
+    float dashCurtime = 0;
     public PlayerMovement(MonoThing thing) : base(thing) { player = (Player)thing; onLand = true; playerHeight = ((CapsuleCollider2D)player.Collider).size.y; }
 
     public override void OnFixedUpdate()
@@ -14,10 +15,13 @@ public class PlayerMovement : Module
 
         LandMove();
         WaterMove();
+
+        dashCurtime += TimeManager.FixedDeltaTime;
     }
 
     public void SetLand()
     {
+        UserInput.Instance.UnbindKeyDown(KeyCode.Space, Dash);
         UserInput.Instance.BindKeyDown(KeyCode.Space, Jump);
         onLand = true;
         player.Rigidbody.freezeRotation = true;
@@ -28,6 +32,7 @@ public class PlayerMovement : Module
     public void SetWater()
     {
         UserInput.Instance.UnbindKeyDown(KeyCode.Space, Jump);
+        UserInput.Instance.BindKeyDown(KeyCode.Space, Dash);
         onLand = false;
         player.Rigidbody.freezeRotation = false;
         player.Rigidbody.linearDamping = 4;
@@ -61,10 +66,20 @@ public class PlayerMovement : Module
             player.Rigidbody.AddForce(Vector2.up * player.JumpPower, ForceMode2D.Impulse);
     }
 
+    public void Dash()
+    {
+        if(dashCurtime > player.DashCooltime)
+        {
+            player.Rigidbody.AddForce(player.transform.up * player.DashPower, ForceMode2D.Impulse);
+            dashCurtime = 0;
+        }
+    }
+
     public override void OnRemoved()
     {
         base.OnRemoved();
         UserInput.Instance.UnbindKeyDown(KeyCode.Space, Jump);
+        UserInput.Instance.UnbindKeyDown(KeyCode.Space, Dash);
     }
 
 
