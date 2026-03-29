@@ -21,10 +21,12 @@ public class Piranha : Entity_baseclass
     public bool PlayerBlood;
     Vector2 moveDir;
     float MaxSpeed = 5.5f;
+    Player player;
     void Start()
     {
         state_pira = State.idle;
         rb = GetComponent<Rigidbody2D>();
+        player = FindFirstObjectByType<Player>();
     }
     void Update()
     {
@@ -111,5 +113,13 @@ public class Piranha : Entity_baseclass
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectradius);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+          
+        }
     }
 }
