@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class seabomb : Entity_baseclass
 {
-    
-   
+
+    Entity_baseclass eb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,15 +16,16 @@ public class seabomb : Entity_baseclass
         
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.CompareTag("Player"))
-        {
-            bomb();
+        if (collision.CompareTag("player")){
+            eb.player.DashCooltime *= 4 / 5;
         }
     }
     void bomb()
     {
+        eb.deathType = DeathType.bomb;
+        eb.player.Dead(eb.deathType);
         Destroy(gameObject);
     }
    

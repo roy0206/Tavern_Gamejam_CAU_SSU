@@ -78,7 +78,7 @@ public class PlayerMovement : Module
         {
             Quaternion targetRot = Quaternion.Euler(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90);
             player.transform.DORotateQuaternion(targetRot, 0.5f);
-            player.Rigidbody.AddForce(dir * player.BaseSpeed * TimeManager.TImeScale * 0.1f, ForceMode2D.Impulse);
+            player.Rigidbody.AddForce(dir * player.BaseSpeed * TimeManager.TImeScale * 0.05f, ForceMode2D.Impulse);
             player.Animator.SetBool("Swim", true);
         }
         else
@@ -110,7 +110,7 @@ public class PlayerMovement : Module
             outerForce["Slip"] = new Vector2(moveX * 10, 0);
             yield return null;
         }
-        while(curTime < 1)
+        while(curTime < 0.3)
         {
             outerForce["Slip"] = new Vector2(moveX * 10, 0);
             curTime += TimeManager.DeltaTime;
@@ -121,7 +121,7 @@ public class PlayerMovement : Module
 
     public void Jump()
     {
-        if (!allowJump) return;
+        if (!allowJump || isSit) return;
         RaycastHit2D hit = Physics2D.Raycast(player.transform.position, -player.transform.up, playerHeight / 2 + 0.1f, LayerMask.GetMask("Floor"));
         if(hit)
             player.Rigidbody.AddForce(Vector2.up * player.JumpPower, ForceMode2D.Impulse);
@@ -141,12 +141,14 @@ public class PlayerMovement : Module
     {
         isSit = true;
         ((CapsuleCollider2D)player.Collider).size = new Vector2(1, 1.5f);
+        player.Animator.SetBool("Sit", true);
     }
 
     public void SitUp()
     {
         isSit = false;
         ((CapsuleCollider2D)player.Collider).size = new Vector2(1, 2f);
+        player.Animator.SetBool("Sit", false);
     }
     public override void OnRemoved()
     {

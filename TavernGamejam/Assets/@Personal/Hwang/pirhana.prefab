@@ -183,4 +183,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d7154c60139d94a98cbc4196fd2576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Piranha
-  PlayerBlood: 0
+  PlayerBlood: 1
