@@ -18025,7 +18025,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6200111420513484578, guid: ee3ff20701b3e6c40b358b09159e1dda, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.56
+      value: -7.9
       objectReference: {fileID: 0}
     - target: {fileID: 6200111420513484578, guid: ee3ff20701b3e6c40b358b09159e1dda, type: 3}
       propertyPath: m_LocalPosition.y
@@ -25053,7 +25053,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4934211300723840832, guid: 33a4d04106d3441fb8bef53292696d22, type: 3}
       propertyPath: coneHalfAngleDeg
-      value: 24.4
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4934211300723840832, guid: 33a4d04106d3441fb8bef53292696d22, type: 3}
       propertyPath: netWidthOverride
@@ -25061,15 +25061,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4934211300723840832, guid: 33a4d04106d3441fb8bef53292696d22, type: 3}
       propertyPath: detectionDistance
-      value: 7.91
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9050763447912797117, guid: 33a4d04106d3441fb8bef53292696d22, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.491283
+      value: 22.89
       objectReference: {fileID: 0}
     - target: {fileID: 9050763447912797117, guid: 33a4d04106d3441fb8bef53292696d22, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.3676667
+      value: 5.357
       objectReference: {fileID: 0}
     - target: {fileID: 9050763447912797117, guid: 33a4d04106d3441fb8bef53292696d22, type: 3}
       propertyPath: m_LocalPosition.z

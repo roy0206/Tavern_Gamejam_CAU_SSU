@@ -41,7 +41,7 @@ public class Player : MonoThing
     new protected void Update()
     {
         base.Update();
-        print(Rigidbody.linearVelocity.magnitude);
+        // print(Rigidbody.linearVelocity.magnitude);
     }
 
     public void Dead(DeathType deathType)

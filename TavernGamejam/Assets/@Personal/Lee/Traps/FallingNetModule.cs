@@ -39,11 +39,13 @@ public class FallingNetModule : Module
         _net.Rigidbody.gravityScale = _gravityScale;
         _net.Rigidbody.constraints  = RigidbodyConstraints2D.FreezeRotation;
 
+        // 이거 값 때문에 터지던 거였음.
+        _startPos = _net.transform.position;
+
         _net.transform.DOScale(targetScale, 0.4f)
             .SetEase(Ease.OutQuad)
             .OnComplete(() =>
             {
-                _startPos = _net.transform.position;
                 _net.Rigidbody.isKinematic    = false;
                 _net.Rigidbody.linearVelocity = _launchDirection * _launchSpeed;
             });
@@ -57,7 +59,7 @@ public class FallingNetModule : Module
         if (_destroyed) return;
         
         // 거리까지는 가게 만들려고
-        if (Vector2.Distance(_net.transform.position, _startPos) >= _fallDistance) {
+        if (Vector2.Distance(_net.transform.position, _startPos) > _fallDistance) {
             _destroyed = true;
             Object.Destroy(_net.gameObject);
         }

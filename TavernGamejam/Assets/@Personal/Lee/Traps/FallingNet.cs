@@ -11,7 +11,8 @@ public class FallingNet : MonoThing
         base.Awake();
     }
 
-    public void Init(float fallDistance, float netWidth, Vector2 launchDirection, float launchSpeed, float gravityScale)
+    public void Init(float fallDistance, float netWidth, 
+        Vector2 launchDirection, float launchSpeed, float gravityScale)
     {
         _module = new FallingNetModule(this);
         AddModule(_module).Init(fallDistance, netWidth, _caughtSprite, launchDirection, launchSpeed, gravityScale);

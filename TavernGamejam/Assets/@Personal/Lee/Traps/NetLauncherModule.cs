@@ -49,10 +49,11 @@ public class NetLauncherModule : Module
         Collider2D[] hits = Physics2D.OverlapCircleAll(
             _launcher.transform.position,
             _detectionDistance);
-
+        
         foreach (Collider2D col in hits)
         {
             if (!col.TryGetComponent<Player>(out _)) continue;
+            
 
             Vector2 headPos  = new Vector2(col.bounds.center.x, col.bounds.max.y);
             Vector2 toTarget = headPos - (Vector2)_launcher.transform.position;
@@ -61,7 +62,10 @@ public class NetLauncherModule : Module
 
             float angle = Vector2.Angle(_launchDirection, toTarget);
             if (angle <= _coneHalfAngle)
+            {
+                
                 return true;
+            }
         }
 
         return false;
@@ -80,6 +84,7 @@ public class NetLauncherModule : Module
             _launcher.transform.position,
             Quaternion.identity);
 
+        // Debug.Log("check");
         net.Init(_detectionDistance, netWidth, _launchDirection, _launchSpeed, _gravityScale);
     }
 }
