@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class FallingNetModule : Module
@@ -22,9 +23,14 @@ public class FallingNetModule : Module
 
         _startY = _net.transform.position.y;
 
-        Vector3 scale = _net.transform.localScale;
-        scale.x = netWidth;
-        _net.transform.localScale = scale;
+        float aspectRatio = 1f;
+        var sprite = _net.SpriteRenderer != null ? _net.SpriteRenderer.sprite : null;
+        if (sprite != null && sprite.bounds.size.x > 0f)
+            aspectRatio = sprite.bounds.size.y / sprite.bounds.size.x;
+
+        Vector3 targetScale = new Vector3(netWidth, netWidth * aspectRatio, _net.transform.localScale.z);
+        _net.transform.localScale = targetScale * 0.05f;
+        _net.transform.DOScale(targetScale, 0.4f).SetEase(Ease.OutQuad);
 
         base.Init();
     }
