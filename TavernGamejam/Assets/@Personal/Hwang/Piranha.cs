@@ -20,14 +20,11 @@ public class Piranha : Entity_baseclass
     bool isPlayer;
     public bool PlayerBlood = false;
     Vector2 moveDir;
-<<<<<<< Updated upstream
-    float MaxSpeed = 4.5f;
-    Player player;
-=======
+
     float MaxSpeed = 5.5f;
     Entity_baseclass eb;
     GameObject playerobj;
->>>>>>> Stashed changes
+
     void Start()
     {
         state_pira = State.idle;
