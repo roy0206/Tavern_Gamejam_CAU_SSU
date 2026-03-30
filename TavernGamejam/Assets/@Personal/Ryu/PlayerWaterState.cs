@@ -6,13 +6,9 @@ public class PlayerWaterState : State<Player>
     public override void Enter(Player player)
     {
         player.GetModule<PlayerMovement>().SetWater();
-<<<<<<< Updated upstream
         player.GetModule<Oxygen>().AddChange("Water", 50);
-=======
-        player.GetModule<Oxygen>().AddChange("Water", 25);
         AudioManager.Instance.PlaySound("Diving", player.transform.root, Mathf.Clamp(player.Rigidbody.linearVelocityY / 3, 0, 1), 1);
         swimSound = AudioManager.Instance.PlaySound("Swiming", player.transform.root, 1, 999);
->>>>>>> Stashed changes
         Debug.Log("Enter Water");
     }
 
