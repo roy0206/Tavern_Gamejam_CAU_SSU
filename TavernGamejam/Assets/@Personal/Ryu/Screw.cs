@@ -17,6 +17,7 @@ public class Screw : Entity_baseclass
     new protected void FixedUpdate()
     {
         base.FixedUpdate();
+        if (player.GetModule<StateMachine<Player>>() == null) return;
         if (player.GetModule<StateMachine<Player>>().GetCurrentState() != typeof(PlayerWaterState)) return;
 
         Vector2 pullVec = -(player.transform.position - transform.position);

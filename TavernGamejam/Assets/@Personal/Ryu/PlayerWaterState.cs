@@ -5,7 +5,7 @@ public class PlayerWaterState : State<Player>
     public override void Enter(Player player)
     {
         player.GetModule<PlayerMovement>().SetWater();
-        player.GetModule<Oxygen>().AddChange("Water", 25);
+        player.GetModule<Oxygen>().AddChange("Water", 50);
         Debug.Log("Enter Water");
     }
 

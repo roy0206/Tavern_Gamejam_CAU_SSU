@@ -31,14 +31,12 @@ public class Oxygen : Module
             oxygen += v * TimeManager.FixedDeltaTime;
         }
         oxygen = Mathf.Clamp(oxygen, 0, maxOxygen);
-        if(maxOxygen == 0)
+        if(oxygen == 0)
         {
-            player.Dead();
+            player.Dead(DeathType.Suffocated);
         }
         red.transform.localPosition = new Vector3(0, Mathf.Lerp(0, 0.5f, 1 - oxygen / maxOxygen),0);
         red.transform.localScale = new Vector3(1, Mathf.Lerp(0, 1f, 1 - oxygen / maxOxygen), 1);
-
-        Debug.Log(oxygen);
     }
 
     public void AddChange(string name, float value)
