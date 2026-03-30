@@ -110,7 +110,7 @@ public class PlayerMovement : Module
             outerForce["Slip"] = new Vector2(moveX * 10, 0);
             yield return null;
         }
-        while(curTime < 1)
+        while(curTime < 0.3)
         {
             outerForce["Slip"] = new Vector2(moveX * 10, 0);
             curTime += TimeManager.DeltaTime;
