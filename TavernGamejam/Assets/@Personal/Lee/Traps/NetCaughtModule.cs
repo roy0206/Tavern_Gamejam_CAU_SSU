@@ -31,9 +31,9 @@ public class NetCaughtModule : Module
         _overlay.transform.SetParent(Thing.transform);
         _overlay.transform.localPosition = Vector3.zero;
         _overlay.transform.localScale    = Vector3.one * 4.3f;
-        SpriteRenderer sr;
-        if(!_overlay.TryGetComponent(out sr)) return;
         
+        
+        SpriteRenderer sr = _overlay.AddComponent<SpriteRenderer>(); // 노란줄 불편해서 바꿨는데 그 로직 자체가 다른거였음 엄.
         sr.sprite = _caughtSprite;
 
         if (Thing.SpriteRenderer != null)
