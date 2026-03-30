@@ -11,18 +11,19 @@ public class PlayerDeadState : State<Player>
         switch (player.DeathType)
         {
             case DeathType.Suffocated:
-/*                player.Rigidbody.freezeRotation = false;*/
+
                 break;
             case DeathType.Bitten:
-                //Blood
-                //SplitBody
+                player.GetModule<BloodEmiter>().Bleed(40, false);
+                
                 break;
             case DeathType.Stab:
-                //Blood
+                player.GetModule<BloodEmiter>().Bleed(20, true);
+                AudioManager.Instance.PlaySound("Stab", player.transform.root, 1, 1);
                 break;
             case DeathType.Ground:
-                //LotOfBlood
-                //BodyDisapear
+                player.GetModule<BloodEmiter>().Bleed(300, false);
+                player.SpriteRenderer.enabled = false;
                 break;
         }
     }

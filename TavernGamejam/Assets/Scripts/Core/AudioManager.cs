@@ -50,10 +50,16 @@ public class AudioManager : Singleton<AudioManager>, ISceneEventListener
         {
             var channel = GetAvaliableChannel();
             channel.transform.parent = sourceParent;
+            channel.transform.localPosition = Vector2.zero;
             channel.clip = clip;
             channel.volume = volume;
             channel.loop = false;
             channel.maxDistance = volume * 10;
+            AnimationCurve curve = new AnimationCurve();
+            curve.AddKey(0f, 1f);   // Min Distance → 최대 볼륨
+            curve.AddKey(1f, 0f);   // Max Distance → 0
+
+            channel.SetCustomCurve(AudioSourceCurveType.CustomRolloff, curve);
             channel.Play();
             var id = CreateSourceId();
             activeSources[id] = (channel, repeatTime);
@@ -121,12 +127,17 @@ public class AudioManager : Singleton<AudioManager>, ISceneEventListener
         List<int> replayList = new();
         foreach (int key in activeSources.Keys)
         {
-            if(!activeSources.TryGetValue(key, out var value)|| value.source == null || value.count <= 0)
+            if (!activeSources.TryGetValue(key, out var value) || value.source == null || value.count <= 0)
             {
                 removeList.Add(key);
                 continue;
             }
-            else if(!value.source.isPlaying && value.count > 1) replayList.Add(key);
+            else if (!value.source.isPlaying)
+            {
+                if (value.count > 1) replayList.Add(key);
+                else removeList.Add(key);
+            }
+
         }
 
         while(removeList.Count > 0)

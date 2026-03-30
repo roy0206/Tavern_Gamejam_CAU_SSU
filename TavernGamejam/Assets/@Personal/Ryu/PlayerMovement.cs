@@ -134,6 +134,7 @@ public class PlayerMovement : Module
             player.Rigidbody.AddForce(player.transform.up * player.DashPower, ForceMode2D.Impulse);
             dashCurtime = 0;
             player.Animator.SetTrigger("Dash");
+            AudioManager.Instance.PlaySound("Dashing", player.transform.root, 1, 1);
         }
     }
 

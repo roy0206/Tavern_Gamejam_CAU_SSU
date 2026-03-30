@@ -33,7 +33,7 @@ public class Player : MonoThing
                 { "Water", new PlayerWaterState()},
                 { "Dead", new PlayerDeadState()}
             }, "Land");
-
+        AddModule(new BloodEmiter(this)).Init();
 
     }
 
@@ -41,6 +41,7 @@ public class Player : MonoThing
     new protected void Update()
     {
         base.Update();
+        print(Rigidbody.linearVelocity.magnitude);
     }
 
     public void Dead(DeathType deathType)

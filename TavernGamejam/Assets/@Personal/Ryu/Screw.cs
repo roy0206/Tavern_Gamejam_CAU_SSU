@@ -12,6 +12,7 @@ public class Screw : Entity_baseclass
     private void Start()
     {
         player = FindFirstObjectByType<Player>();
+        AudioManager.Instance.PlaySound("Motor", transform, 1, 9999);
     }
 
     new protected void FixedUpdate()
@@ -22,7 +23,9 @@ public class Screw : Entity_baseclass
 
         Vector2 pullVec = -(player.transform.position - transform.position);
         if (pullVec.magnitude > maxDistance) return;
+        if (pullVec.magnitude < 0.25f) player.Dead(DeathType.Ground);
         player.Rigidbody.AddForce(pullVec * pullPower / pullVec.magnitude, ForceMode2D.Force);
+        
     }
 }
 
