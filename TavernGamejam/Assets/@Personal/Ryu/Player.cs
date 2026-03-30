@@ -42,9 +42,10 @@ public class Player : MonoThing
         base.Update();
     }
 
-    public void Dead()
+    public void Dead(DeathType deathType)
     {
         Debug.Log("PlayerHasDead");
+        this.deathType = deathType;
         GetModule<StateMachine<Player>>().ChangeState("Dead");
     }
 }
