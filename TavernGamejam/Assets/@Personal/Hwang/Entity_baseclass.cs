@@ -12,11 +12,5 @@ public class Entity_baseclass : MonoThing
         player = FindFirstObjectByType<Player>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
-
 
 }

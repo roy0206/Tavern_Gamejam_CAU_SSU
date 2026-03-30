@@ -84,8 +84,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 0.7002697, b: 1, a: 0.8}
+  m_Sprite: {fileID: 21300000, guid: 361c4e795fb725c4ab48d4c0c7fc6d5d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -106,13 +106,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf386ed0c0d1a14295c4deee2c29003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bubble
+  player: {fileID: 0}
+  deathType: 0
   point1: {fileID: 0}
   point2: {fileID: 0}
   timePerMove: 5
   ease: 1
-  anim: {fileID: 0}
-  prefab: {fileID: 8747226664423465609}
-  regenTime: 3
 --- !u!58 &2629008739044522882
 CircleCollider2D:
   m_ObjectHideFlags: 0
