@@ -3,12 +3,13 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Entity_baseclass : MonoThing
 {
-   Camera cam;
+    public Player player;
+    public DeathType deathType;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-        
+        player = FindFirstObjectByType<Player>();
     }
 
     // Update is called once per frame
