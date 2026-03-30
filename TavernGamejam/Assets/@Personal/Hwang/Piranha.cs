@@ -32,18 +32,17 @@ public class Piranha : Entity_baseclass
 
     [SerializeField] LayerMask waterLayer;
 
-    bool isInWater = false; // 🔴 핵심
+    bool isInWater = false; 
 
     void Start()
     {
         state_pira = State.idle;
         rb = GetComponent<Rigidbody2D>();
-        eb = GetComponent<Entity_baseclass>(); // 🔴 null 방지
+        eb = GetComponent<Entity_baseclass>(); 
     }
 
     void Update()
     {
-        // 🔴 물 밖이면 완전 정지
         if (!isInWater)
         {
             rb.linearVelocity = Vector2.zero;
@@ -59,7 +58,6 @@ public class Piranha : Entity_baseclass
             {
                 if (t.CompareTag("Player"))
                 {
-                    // 🔴 플레이어도 물 안에 있을 때만 추적
                     if (Physics2D.OverlapPoint(t.transform.position, waterLayer))
                     {
                         isPlayer = true;
@@ -153,16 +151,14 @@ public class Piranha : Entity_baseclass
         detectradius = 5f;
     }
 
-    // 🔴 water 들어감
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        // water 체크
         if (((1 << other.gameObject.layer) & waterLayer) != 0)
         {
             isInWater = true;
         }
 
-        // 플레이어 충돌
         if (other.CompareTag("Player"))
         {
             if (Random.Range(0, 2) == 0 && PlayerBlood == false)
@@ -183,7 +179,6 @@ public class Piranha : Entity_baseclass
         }
     }
 
-    // 🔴 water 나감
     void OnTriggerExit2D(Collider2D other)
     {
         if (((1 << other.gameObject.layer) & waterLayer) != 0)
