@@ -28,5 +28,7 @@ public class MovingObject : Entity_baseclass
         point2 = p2;
         timePerMove = tpm;
         ease = e;
+        DOVirtual.DelayedCall(timePerMove, () => { transform.DOKill();SpriteRenderer.DOFade(0, 0.5f).OnComplete(() => { Destroy(gameObject); });});
+
     }
 }

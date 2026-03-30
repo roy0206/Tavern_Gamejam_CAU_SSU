@@ -121,7 +121,7 @@ public class PlayerMovement : Module
 
     public void Jump()
     {
-        if (!allowJump) return;
+        if (!allowJump || isSit) return;
         RaycastHit2D hit = Physics2D.Raycast(player.transform.position, -player.transform.up, playerHeight / 2 + 0.1f, LayerMask.GetMask("Floor"));
         if(hit)
             player.Rigidbody.AddForce(Vector2.up * player.JumpPower, ForceMode2D.Impulse);
