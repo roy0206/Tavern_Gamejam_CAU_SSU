@@ -9,6 +9,9 @@ public class NetLauncherModule : Module
     float _coneHalfAngle;
     float _launchDelay;
     float _netWidthOverride;
+    Vector2 _launchDirection;
+    float _launchSpeed;
+    float _gravityScale;
     bool _fired = false;
 
     public NetLauncherModule(MonoThing thing) : base(thing)
@@ -23,6 +26,9 @@ public class NetLauncherModule : Module
         _coneHalfAngle     = (float)objects[2];
         _launchDelay       = (float)objects[3];
         _netWidthOverride  = (float)objects[4];
+        _launchDirection   = ((Vector2)objects[5]).normalized;
+        _launchSpeed       = (float)objects[6];
+        _gravityScale      = (float)objects[7];
         base.Init();
     }
 
@@ -51,9 +57,9 @@ public class NetLauncherModule : Module
             Vector2 headPos  = new Vector2(col.bounds.center.x, col.bounds.max.y);
             Vector2 toTarget = headPos - (Vector2)_launcher.transform.position;
 
-            if (toTarget.y >= 0f) continue;
+            if (Vector2.Dot(toTarget, _launchDirection) <= 0f) continue;
 
-            float angle = Vector2.Angle(Vector2.down, toTarget);
+            float angle = Vector2.Angle(_launchDirection, toTarget);
             if (angle <= _coneHalfAngle)
                 return true;
         }
@@ -74,6 +80,6 @@ public class NetLauncherModule : Module
             _launcher.transform.position,
             Quaternion.identity);
 
-        net.Init(_detectionDistance, netWidth);
+        net.Init(_detectionDistance, netWidth, _launchDirection, _launchSpeed, _gravityScale);
     }
 }
