@@ -20,7 +20,7 @@ public class Piranha : Entity_baseclass
     bool isPlayer;
     public bool PlayerBlood;
     Vector2 moveDir;
-    float MaxSpeed = 5.5f;
+    float MaxSpeed = 4.5f;
     Player player;
     void Start()
     {

@@ -78,7 +78,7 @@ public class PlayerMovement : Module
         {
             Quaternion targetRot = Quaternion.Euler(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90);
             player.transform.DORotateQuaternion(targetRot, 0.5f);
-            player.Rigidbody.AddForce(dir * player.BaseSpeed * TimeManager.TImeScale * 0.1f, ForceMode2D.Impulse);
+            player.Rigidbody.AddForce(dir * player.BaseSpeed * TimeManager.TImeScale * 0.05f, ForceMode2D.Impulse);
             player.Animator.SetBool("Swim", true);
         }
         else

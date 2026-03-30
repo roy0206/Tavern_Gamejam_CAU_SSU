@@ -14,7 +14,7 @@ public class FishingRod : Entity_baseclass
         {
             player.Dead(DeathType.Stab);
             this.player = player;
-            transform.DOMoveY(6, 01f).SetEase(Ease.OutCubic);
+            transform.DOMoveY(10, 01f).SetEase(Ease.OutCubic);
             isActivated = true;
         }
     }
