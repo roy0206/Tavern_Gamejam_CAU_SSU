@@ -11,7 +11,7 @@ public class PlayerDeadState : State<Player>
         switch (player.DeathType)
         {
             case DeathType.Suffocated:
-                player.Rigidbody.freezeRotation = false;
+/*                player.Rigidbody.freezeRotation = false;*/
                 break;
             case DeathType.Bitten:
                 //Blood

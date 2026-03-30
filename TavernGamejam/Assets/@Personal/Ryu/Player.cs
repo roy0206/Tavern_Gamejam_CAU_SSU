@@ -30,7 +30,8 @@ public class Player : MonoThing
         AddModule(new StateMachine<Player>(this)).Init(
             new Dictionary<string, State<Player>>(){
                 {"Land" , new PlayerLandState() },
-                { "Water", new PlayerWaterState()}
+                { "Water", new PlayerWaterState()},
+                { "Dead", new PlayerDeadState()}
             }, "Land");
 
 
@@ -44,7 +45,6 @@ public class Player : MonoThing
 
     public void Dead(DeathType deathType)
     {
-        Debug.Log("PlayerHasDead");
         this.deathType = deathType;
         GetModule<StateMachine<Player>>().ChangeState("Dead");
     }

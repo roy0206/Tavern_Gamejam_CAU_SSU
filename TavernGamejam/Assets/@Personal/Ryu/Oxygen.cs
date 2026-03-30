@@ -31,7 +31,7 @@ public class Oxygen : Module
             oxygen += v * TimeManager.FixedDeltaTime;
         }
         oxygen = Mathf.Clamp(oxygen, 0, maxOxygen);
-        if(maxOxygen == 0)
+        if(oxygen == 0)
         {
             player.Dead(DeathType.Suffocated);
         }

@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (plr.DeathType == DeathType.NotYetDead) return;
+        if (plr.DeathType != DeathType.NotYetDead) return;
         //Vector3 targetPos = Vector3.Lerp(mainCam.transform.position, plr.transform.position, TimeManager.DeltaTime * 3);
         Vector3 targetPos = plr.transform.position;
         targetPos.z = -10;
