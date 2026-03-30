@@ -27,13 +27,12 @@ public class FallingNetModule : Module
         _launchSpeed     = (float)objects[4];
         _gravityScale    = (float)objects[5];
 
-        float aspectRatio = 1f;
-        var sprite = _net.SpriteRenderer != null ? _net.SpriteRenderer.sprite : null;
-        if (sprite != null && sprite.bounds.size.x > 0f)
-            aspectRatio = sprite.bounds.size.y / sprite.bounds.size.x;
+        // 그냥 크기 적당한거로 하자
+        Vector3 targetScale = new Vector3(3.5f, 3.5f, _net.transform.localScale.z);
+        _net.transform.localScale = targetScale * 0.1f;
 
-        Vector3 targetScale = new Vector3(netWidth, netWidth * aspectRatio, _net.transform.localScale.z);
-        _net.transform.localScale = targetScale * 0.05f;
+        float angle = Mathf.Atan2(_launchDirection.y, _launchDirection.x) * Mathf.Rad2Deg + 90f;
+        _net.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
         _net.Rigidbody.isKinematic  = true;
         _net.Rigidbody.gravityScale = _gravityScale;

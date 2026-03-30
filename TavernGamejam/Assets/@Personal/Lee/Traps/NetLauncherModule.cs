@@ -83,6 +83,7 @@ public class NetLauncherModule : Module
             _netPrefab,
             _launcher.transform.position,
             Quaternion.identity);
+        
 
         // Debug.Log("check");
         net.Init(_detectionDistance, netWidth, _launchDirection, _launchSpeed, _gravityScale);
