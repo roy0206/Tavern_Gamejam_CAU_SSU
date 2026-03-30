@@ -1,10 +1,9 @@
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Piranha : Entity_baseclass
 {
-  enum State
+    enum State
     {
         idle,
         idletochase,
@@ -12,43 +11,64 @@ public class Piranha : Entity_baseclass
         chasetotidle
     };
     State state_pira;
+
     Rigidbody2D rb;
+
     float MoveTimer;
     float Power = 5f;
     float detectradius = 5f;
+
     Transform Playertransform;
     bool isPlayer;
+
     public bool PlayerBlood = false;
+
     Vector2 moveDir;
 
     float MaxSpeed = 5.5f;
+
     Entity_baseclass eb;
     GameObject playerobj;
+
+    [SerializeField] LayerMask waterLayer;
+
+    bool isInWater = false; // 🔴 핵심
 
     void Start()
     {
         state_pira = State.idle;
         rb = GetComponent<Rigidbody2D>();
-       
+        eb = GetComponent<Entity_baseclass>(); // 🔴 null 방지
     }
+
     void Update()
     {
+        // 🔴 물 밖이면 완전 정지
+        if (!isInWater)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
 
-      
-        if (PlayerBlood == false) {
+        if (PlayerBlood == false)
+        {
             Collider2D[] detectPlayer = Physics2D.OverlapCircleAll(transform.position, detectradius);
             isPlayer = false;
-                foreach (var t in detectPlayer)
-                {
-                    if (t.CompareTag("Player"))
-                    {
 
+            foreach (var t in detectPlayer)
+            {
+                if (t.CompareTag("Player"))
+                {
+                    // 🔴 플레이어도 물 안에 있을 때만 추적
+                    if (Physics2D.OverlapPoint(t.transform.position, waterLayer))
+                    {
                         isPlayer = true;
                         Playertransform = t.transform;
                         break;
                     }
-
                 }
+            }
+
             if (isPlayer)
             {
                 if (state_pira == State.idle)
@@ -81,17 +101,20 @@ public class Piranha : Entity_baseclass
         }
         else
         {
+            if (playerobj == null) return;
+
             Vector2 toPlayer = (playerobj.transform.position - transform.position).normalized;
             rb.AddForce(toPlayer * Power);
             rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, MaxSpeed);
         }
-      
     }
 
     void idle()
     {
         rb.linearVelocity *= 0.95f;
+
         MoveTimer -= Time.deltaTime;
+
         if (MoveTimer <= 0)
         {
             MoveTimer = Random.Range(0.5f, 1.5f);
@@ -101,21 +124,27 @@ public class Piranha : Entity_baseclass
                 Random.Range(-0.3f, 0.3f)
             ).normalized;
         }
+
         rb.AddForce(moveDir * (Power * 0.3f));
     }
+
     void idletochase()
     {
         rb.linearVelocity = Vector2.zero;
         state_pira = State.chase;
         detectradius = 10f;
     }
+
     void chase()
     {
         if (Playertransform == null) return;
+
         Vector2 toPlayer = (Playertransform.position - transform.position).normalized;
+
         rb.AddForce(toPlayer * Power);
         rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, MaxSpeed);
     }
+
     void chasetoidle()
     {
         Playertransform = null;
@@ -123,23 +152,25 @@ public class Piranha : Entity_baseclass
         state_pira = State.idle;
         detectradius = 5f;
     }
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectradius);
-    }
 
+    // 🔴 water 들어감
     void OnTriggerEnter2D(Collider2D other)
     {
+        // water 체크
+        if (((1 << other.gameObject.layer) & waterLayer) != 0)
+        {
+            isInWater = true;
+        }
+
+        // 플레이어 충돌
         if (other.CompareTag("Player"))
         {
-
-            if (Random.Range(0, 2) == 0 &&PlayerBlood==false)
+            if (Random.Range(0, 2) == 0 && PlayerBlood == false)
             {
                 eb.deathType = DeathType.Bitten;
                 eb.player.Dead(eb.deathType);
             }
-            else if(Random.Range(0, 2) == 0 && PlayerBlood == true)
+            else if (Random.Range(0, 2) == 0 && PlayerBlood == true)
             {
                 eb.deathType = DeathType.Bitten;
                 eb.player.Dead(eb.deathType);
@@ -149,7 +180,22 @@ public class Piranha : Entity_baseclass
                 playerobj = other.gameObject;
                 PlayerBlood = true;
             }
-      
         }
+    }
+
+    // 🔴 water 나감
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (((1 << other.gameObject.layer) & waterLayer) != 0)
+        {
+            isInWater = false;
+            rb.linearVelocity = Vector2.zero;
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectradius);
     }
 }
