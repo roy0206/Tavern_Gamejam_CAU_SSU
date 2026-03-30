@@ -49,4 +49,5 @@ public class StateMachine<T> : Module where T : MonoThing
     {
         globalState = newState;
     }
+    public System.Type GetCurrentState() => states[currentState].GetType();
 }
