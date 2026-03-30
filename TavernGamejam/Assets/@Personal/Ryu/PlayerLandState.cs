@@ -4,7 +4,7 @@ public class PlayerLandState : State<Player>
     public override void Enter(Player player)
     {
         player.GetModule<PlayerMovement>().SetLand();
-        player.GetModule<Oxygen>().AddChange("Land", -2.5f);
+        player.GetModule<Oxygen>().AddChange("Land", -7.5f);
 
 
         player.GetModule<Effector>().RemoveEffect<PlasticBagEffect>();
