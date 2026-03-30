@@ -5,7 +5,7 @@ using UnityEngine;
 public class Oxygen : Module
 {
     Player player;
-    SpriteRenderer red;
+    PlayerVisuals visual;
     private float oxygen;
     private float maxOxygen;
     Dictionary<string, float> changeOfOxygen;
@@ -14,7 +14,8 @@ public class Oxygen : Module
     public Oxygen(MonoThing thing) : base(thing)
     {
         player = (Player)thing;
-        red = player.transform.Find("Red").GetComponent<SpriteRenderer>();
+        /*        red = player.transform.Find("Red").GetComponent<SpriteRenderer>();*/
+        visual = player.GetComponent<PlayerVisuals>();
         changeOfOxygen = new();
     }
     public override void Init(params object[] objects)
@@ -35,8 +36,9 @@ public class Oxygen : Module
         {
             player.Dead(DeathType.Suffocated);
         }
-        red.transform.localPosition = new Vector3(0, Mathf.Lerp(0, 0.5f, 1 - oxygen / maxOxygen),0);
-        red.transform.localScale = new Vector3(1, Mathf.Lerp(0, 1f, 1 - oxygen / maxOxygen), 1);
+        /*        red.transform.localPosition = new Vector3(0, Mathf.Lerp(0, 0.5f, 1 - oxygen / maxOxygen),0);
+                red.transform.localScale = new Vector3(1, Mathf.Lerp(0, 1f, 1 - oxygen / maxOxygen), 1);*/
+        visual.headTint = new Color(1, oxygen / maxOxygen, oxygen / maxOxygen);
     }
 
     public void AddChange(string name, float value)

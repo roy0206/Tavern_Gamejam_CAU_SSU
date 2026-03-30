@@ -12,9 +12,15 @@ public class PlayerMovement : Module
     bool isSit;
     float dashCurtime = 0;
     bool allowJump = true;
+    float speed;
 
     Dictionary<string, Vector2> outerForce = new();
-    public PlayerMovement(MonoThing thing) : base(thing) { player = (Player)thing; onLand = true; playerHeight = ((CapsuleCollider2D)player.Collider).size.y; }
+    public PlayerMovement(MonoThing thing) : base(thing) {
+        player = (Player)thing;
+        onLand = true;
+        playerHeight = ((CapsuleCollider2D)player.Collider).size.y;
+        speed = player.BaseSpeed;
+    }
 
     public override void OnFixedUpdate()
     {

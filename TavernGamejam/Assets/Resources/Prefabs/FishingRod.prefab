@@ -389,7 +389,7 @@ Transform:
   m_GameObject: {fileID: 1629758776254734435}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.43, y: 0.48, z: 0}
+  m_LocalPosition: {x: -0.14, y: -0.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1147,8 +1147,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4146692913951867478}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.92387956, w: 0.38268343}
-  m_LocalPosition: {x: 0.364, y: -0.416, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.27, y: 0.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1176,7 +1176,7 @@ Transform:
   - {fileID: 7253580683707242505}
   - {fileID: 4672194318265682895}
   m_Father: {fileID: 3704264067106584788}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -135}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4330391240393250851
 GameObject:
   m_ObjectHideFlags: 0
@@ -1750,7 +1750,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7057245357910406977}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.92387956, w: 0.38268343}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.05, y: 2.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1758,7 +1758,7 @@ Transform:
   - {fileID: 2401530960873243114}
   - {fileID: 1066017640192294343}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 135}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7046151636437068499
 SpriteRenderer:
   serializedVersion: 2
@@ -1808,7 +1808,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 996952870, guid: 2a7bb84b371aa4943ab667a37b903319, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 01ea9270371129c4faa9aabdbba15420, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1830,6 +1830,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b1d68a86f4ddea419c14ceb5e869cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishingRod
+  player: {fileID: 0}
+  deathType: 0
   hanger: {fileID: 2401530960873243114}
 --- !u!58 &1182820162053263495
 CircleCollider2D:

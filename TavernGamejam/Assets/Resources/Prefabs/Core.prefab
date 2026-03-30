@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 112702102301483511}
   - component: {fileID: 1621730666973941534}
   - component: {fileID: 354568306206352781}
+  - component: {fileID: 4280579028526643042}
   m_Layer: 0
   m_Name: Core
   m_TagString: Untagged
@@ -64,7 +65,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8ff9481a13ed44b8fb5e26917f0be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimeManager
-  timeScale: 1
 --- !u!114 &112702102301483511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,3 +106,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DataManager
   fileName: Save.json
+--- !u!114 &4280579028526643042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639880607626594580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93fa34b3afe1d8140ae5e4c83885814e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Cloner

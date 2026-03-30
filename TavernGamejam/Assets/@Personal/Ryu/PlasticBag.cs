@@ -10,6 +10,7 @@ public class PlasticBag : Entity_baseclass
     private void Start()
     {
         player = FindFirstObjectByType<Player>();
+        Rigidbody.angularVelocity = 10;
     }
 
     new protected void FixedUpdate()
