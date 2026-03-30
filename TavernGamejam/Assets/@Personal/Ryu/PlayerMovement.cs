@@ -141,12 +141,14 @@ public class PlayerMovement : Module
     {
         isSit = true;
         ((CapsuleCollider2D)player.Collider).size = new Vector2(1, 1.5f);
+        player.Animator.SetBool("Sit", true);
     }
 
     public void SitUp()
     {
         isSit = false;
         ((CapsuleCollider2D)player.Collider).size = new Vector2(1, 2f);
+        player.Animator.SetBool("Sit", false);
     }
     public override void OnRemoved()
     {
