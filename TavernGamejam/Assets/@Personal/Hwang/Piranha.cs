@@ -18,60 +18,77 @@ public class Piranha : Entity_baseclass
     float detectradius = 5f;
     Transform Playertransform;
     bool isPlayer;
-    public bool PlayerBlood;
+    public bool PlayerBlood = false;
     Vector2 moveDir;
+<<<<<<< Updated upstream
     float MaxSpeed = 4.5f;
     Player player;
+=======
+    float MaxSpeed = 5.5f;
+    Entity_baseclass eb;
+    GameObject playerobj;
+>>>>>>> Stashed changes
     void Start()
     {
         state_pira = State.idle;
         rb = GetComponent<Rigidbody2D>();
-        player = FindFirstObjectByType<Player>();
+       
     }
     void Update()
     {
-        Collider2D[] detectPlayer = Physics2D.OverlapCircleAll(transform.position, detectradius);
 
-        isPlayer = false;
+      
+        if (PlayerBlood == false) {
+            Collider2D[] detectPlayer = Physics2D.OverlapCircleAll(transform.position, detectradius);
+            isPlayer = false;
+                foreach (var t in detectPlayer)
+                {
+                    if (t.CompareTag("Player"))
+                    {
 
-        foreach (var t in detectPlayer)
-        {
-            if (t.CompareTag("Player"))
+                        isPlayer = true;
+                        Playertransform = t.transform;
+                        break;
+                    }
+
+                }
+            if (isPlayer)
             {
-                isPlayer = true;
-                Playertransform = t.transform;
-                break;
+                if (state_pira == State.idle)
+                    state_pira = State.idletochase;
             }
-        }
-        if (isPlayer)
-        {
-            if (state_pira == State.idle)
-                state_pira = State.idletochase;
+            else
+            {
+                if (state_pira == State.chase)
+                    state_pira = State.chasetotidle;
+            }
+
+            switch (state_pira)
+            {
+                case State.idle:
+                    idle();
+                    break;
+
+                case State.idletochase:
+                    idletochase();
+                    break;
+
+                case State.chase:
+                    chase();
+                    break;
+
+                case State.chasetotidle:
+                    chasetoidle();
+                    break;
+            }
         }
         else
         {
-            if (state_pira == State.chase)
-                state_pira = State.chasetotidle;
+            Vector2 toPlayer = (playerobj.transform.position - transform.position).normalized;
+            rb.AddForce(toPlayer * Power);
+            rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, MaxSpeed);
         }
-
-        switch (state_pira)
-        {
-            case State.idle:
-                idle();
-                break;
-
-            case State.idletochase:
-                idletochase();
-                break;
-
-            case State.chase:
-                chase();
-                break;
-
-            case State.chasetotidle:
-                chasetoidle();
-                break;
-        }
+      
     }
 
     void idle()
@@ -119,7 +136,23 @@ public class Piranha : Entity_baseclass
     {
         if (other.CompareTag("Player"))
         {
-          
+
+            if (Random.Range(0, 2) == 0 &&PlayerBlood==false)
+            {
+                eb.deathType = DeathType.Bitten;
+                eb.player.Dead(eb.deathType);
+            }
+            else if(Random.Range(0, 2) == 0 && PlayerBlood == true)
+            {
+                eb.deathType = DeathType.Bitten;
+                eb.player.Dead(eb.deathType);
+            }
+            else
+            {
+                playerobj = other.gameObject;
+                PlayerBlood = true;
+            }
+      
         }
     }
 }

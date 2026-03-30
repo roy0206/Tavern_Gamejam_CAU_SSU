@@ -56,6 +56,7 @@ public enum DeathType
     Suffocated,
     Bitten,
     Stab,
-    Ground
+    Ground,
+    bomb
 
 }
