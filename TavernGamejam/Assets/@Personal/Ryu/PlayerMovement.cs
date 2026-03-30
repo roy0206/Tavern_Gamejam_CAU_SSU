@@ -1,5 +1,8 @@
 using DG.Tweening;
+using NUnit.Framework;
+using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class PlayerMovement : Module
 {
@@ -8,6 +11,9 @@ public class PlayerMovement : Module
     bool onLand;
     bool isSit;
     float dashCurtime = 0;
+    bool allowJump = true;
+
+    Dictionary<string, Vector2> outerForce = new();
     public PlayerMovement(MonoThing thing) : base(thing) { player = (Player)thing; onLand = true; playerHeight = ((CapsuleCollider2D)player.Collider).size.y; }
 
     public override void OnFixedUpdate()
@@ -16,6 +22,8 @@ public class PlayerMovement : Module
 
         LandMove();
         WaterMove();
+
+        outerForce.Clear();
 
         dashCurtime += TimeManager.FixedDeltaTime;
     }
@@ -55,6 +63,11 @@ public class PlayerMovement : Module
 
         if(Mathf.Abs(moveX)>0) player.Animator.SetBool("Walk", true);
         else player.Animator.SetBool("Walk", false);
+        foreach (var force in outerForce.Values)
+        {
+            player.Rigidbody.linearVelocity += force;
+        }
+
     }
     void WaterMove()
     {
@@ -76,10 +89,39 @@ public class PlayerMovement : Module
         else if(dir.x > 0) player.SpriteRenderer.flipX = false;
 
         Float();
+
+        foreach (var force in outerForce.Values)
+        {
+            player.Rigidbody.AddForce(force, ForceMode2D.Force);
+        }
+    }
+
+    public void Slip()
+    {
+        player.StartCoroutine(DoSlip());
+    }
+    IEnumerator DoSlip()
+    {
+        allowJump = false;
+        float curTime = 0;
+        float moveX = new Vector2(UserInput.Instance.MoveDirectionRaw.x, 0).normalized.x;
+        while (Physics2D.Raycast(player.transform.position, - player.transform.up, playerHeight / 2 + 0.1f, LayerMask.GetMask("Floor")))
+        {
+            outerForce["Slip"] = new Vector2(moveX * 10, 0);
+            yield return null;
+        }
+        while(curTime < 1)
+        {
+            outerForce["Slip"] = new Vector2(moveX * 10, 0);
+            curTime += TimeManager.DeltaTime;
+            yield return null;
+        }
+        allowJump = true;
     }
 
     public void Jump()
     {
+        if (!allowJump) return;
         RaycastHit2D hit = Physics2D.Raycast(player.transform.position, -player.transform.up, playerHeight / 2 + 0.1f, LayerMask.GetMask("Floor"));
         if(hit)
             player.Rigidbody.AddForce(Vector2.up * player.JumpPower, ForceMode2D.Impulse);
