@@ -506,19 +506,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52881317eea8c04d8853c3bfd601fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
---- !u!1 &560114835 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 927261410854476574, guid: ee3ff20701b3e6c40b358b09159e1dda, type: 3}
-  m_PrefabInstance: {fileID: 4377114652843990976}
-  m_PrefabAsset: {fileID: 0}
---- !u!81 &560114842
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 560114835}
-  m_Enabled: 1
 --- !u!1 &944594130
 GameObject:
   m_ObjectHideFlags: 0
@@ -1268,21 +1255,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7625533970156336048, guid: ee3ff20701b3e6c40b358b09159e1dda, type: 3}
-      propertyPath: EmissionModule.m_BurstCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7625533970156336048, guid: ee3ff20701b3e6c40b358b09159e1dda, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 927261410854476574, guid: ee3ff20701b3e6c40b358b09159e1dda, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 560114842}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee3ff20701b3e6c40b358b09159e1dda, type: 3}
 --- !u!1001 &7144441402113885552
 PrefabInstance:
