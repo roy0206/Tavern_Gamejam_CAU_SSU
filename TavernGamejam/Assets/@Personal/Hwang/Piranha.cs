@@ -1,6 +1,4 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Piranha : Entity_baseclass
 {
@@ -16,7 +14,7 @@ public class Piranha : Entity_baseclass
     Rigidbody2D rb;
 
     float MoveTimer;
-    float Power = 5f;
+    float Power = 8f;
     float detectradius = 5f;
 
     Transform Playertransform;
@@ -26,12 +24,16 @@ public class Piranha : Entity_baseclass
 
     Vector2 moveDir;
 
-    float MaxSpeed = 5.5f;
+    public float MaxSpeed = 5.5f;
 
-    Entity_baseclass eb;
     GameObject playerobj;
 
-    public LayerMask waterLayer;
+    [SerializeField] float waterTop;
+    [SerializeField] float waterBottom;
+    [SerializeField] float waterLeft;
+    [SerializeField] float waterRight;
+
+    bool isInWater = false;
 
     void Start()
     {
@@ -41,17 +43,23 @@ public class Piranha : Entity_baseclass
 
     void Update()
     {
+       
+        isInWater = IsInWater(transform.position);
 
-        bool isInWater = Physics2D.OverlapPoint(transform.position, waterLayer);
-
-        if (!isInWater)
+        if (isInWater)
         {
+            rb.gravityScale = 0;
+            rb.linearDamping = 3f;
+        }
+        else
+        {
+            rb.gravityScale = 10;
+            rb.linearDamping = 0f;
             rb.linearVelocity = Vector2.zero;
             return;
         }
 
-
-        if (PlayerBlood == false)
+        if (!PlayerBlood)
         {
             Collider2D[] detectPlayer = Physics2D.OverlapCircleAll(transform.position, detectradius);
             isPlayer = false;
@@ -60,8 +68,7 @@ public class Piranha : Entity_baseclass
             {
                 if (t.CompareTag("Player"))
                 {
-
-                    if (Physics2D.OverlapPoint(t.transform.position, waterLayer))
+                    if (IsInWater(t.transform.position)) 
                     {
                         isPlayer = true;
                         Playertransform = t.transform;
@@ -105,9 +112,43 @@ public class Piranha : Entity_baseclass
             if (playerobj == null) return;
 
             Vector2 toPlayer = (playerobj.transform.position - transform.position).normalized;
+
             rb.AddForce(toPlayer * Power);
             rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, MaxSpeed);
         }
+    }
+
+    void FixedUpdate()
+    {
+        if (isInWater)
+        {
+            ClampToWater();
+
+            
+            rb.linearVelocity = new Vector2(
+                rb.linearVelocity.x,
+                Mathf.Clamp(rb.linearVelocity.y, -2f, 2f)
+            );
+        }
+    }
+
+    bool IsInWater(Vector2 pos)
+    {
+        return pos.x > waterLeft &&
+               pos.x < waterRight &&
+               pos.y < waterTop &&
+               pos.y > waterBottom;
+    }
+
+ 
+    void ClampToWater()
+    {
+        Vector2 pos = transform.position;
+
+        pos.x = Mathf.Clamp(pos.x, waterLeft, waterRight);
+        pos.y = Mathf.Clamp(pos.y, waterBottom, waterTop);
+
+        transform.position = pos;
     }
 
     void idle()
@@ -122,7 +163,7 @@ public class Piranha : Entity_baseclass
 
             moveDir = new Vector2(
                 Random.Range(-1f, 1f),
-                Random.Range(-0.3f, 0.3f)
+                Random.Range(-0.2f, 0.3f)
             ).normalized;
         }
 
@@ -140,9 +181,9 @@ public class Piranha : Entity_baseclass
     {
         if (Playertransform == null) return;
 
-        Vector2 toPlayer = (Playertransform.position - transform.position).normalized;
+        Vector2 dir = (Playertransform.position - transform.position).normalized;
 
-        rb.AddForce(toPlayer * Power);
+        rb.AddForce(dir * Power);
         rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, MaxSpeed);
     }
 
@@ -158,16 +199,31 @@ public class Piranha : Entity_baseclass
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectradius);
+        Gizmos.color = Color.blue;
+        Vector3 center = new Vector3(
+            (waterLeft + waterRight) / 2,
+            (waterTop + waterBottom) / 2,
+            0
+        );
+
+        Vector3 size = new Vector3(
+            waterRight - waterLeft,
+            waterTop - waterBottom,
+            0
+        );
+
+        Gizmos.DrawWireCube(center, size);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
+
             if (Random.Range(0, 2) == 0 && PlayerBlood == false)
             {
                 if (!other.TryGetComponent<Player>(out var player)) return;
-                player.Dead(DeathType.Bitten);
+                 player.Dead(DeathType.Bitten);
             }
             else if (Random.Range(0, 2) == 0 && PlayerBlood == true)
             {
