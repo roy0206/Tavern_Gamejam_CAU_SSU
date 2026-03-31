@@ -30,11 +30,19 @@ public class PanelManager : MonoBehaviour
 
     void TogglePanel()
     {
+
         if (panel.activeSelf)
+        {
             panel.SetActive(false);
-        
+            TimeManager.Instance.ChangeTimeScale(1);
+            
+        }
         else
+        {
             panel.SetActive(true);
+            TimeManager.Instance.ChangeTimeScale(0);
+            
+        }
     }
 
 }
