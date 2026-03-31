@@ -50,8 +50,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneController
   sceneConfigs:
-  - {fileID: 11400000, guid: a9227f8751e37984ea48cabfb445e7b8, type: 2}
-  - {fileID: 11400000, guid: 20f5099485a3ef544a50b9c17ff9d594, type: 2}
+  - {fileID: 11400000, guid: 0d31d89deb1d2414790f4b3f886fc5f8, type: 2}
+  - {fileID: 11400000, guid: 01f36d373a649b345bd4117c72711aed, type: 2}
   transitionCanvasGroup: {fileID: 0}
 --- !u!114 &8249519202550575532
 MonoBehaviour:
