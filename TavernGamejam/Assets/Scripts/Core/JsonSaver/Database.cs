@@ -7,7 +7,7 @@ using System;
 [Serializable]
 public class Database
 {
-    //Something to Save
+    public int checkpoint;
 
 
 
@@ -19,6 +19,6 @@ public class Database
 
     public Database()
     {
-        //The Initial Value of variables
+        checkpoint = 0;
     }
 }
