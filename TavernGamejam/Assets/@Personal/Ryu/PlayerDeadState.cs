@@ -6,6 +6,7 @@ public class PlayerDeadState : State<Player>
     {
         player.RemoveModule<PlayerMovement>();
         player.RemoveModule<Oxygen>();
+        player.RemoveModule<DashIndicator>();
         Debug.Log("PlayerHasDead");
 
         switch (player.DeathType)

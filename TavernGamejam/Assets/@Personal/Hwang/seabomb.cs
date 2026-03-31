@@ -20,7 +20,7 @@ public class seabomb : Entity_baseclass
     {
         if (collision.CompareTag("Player")){
             if (!collision.TryGetComponent<Player>(out var player)) return;
-            player.Dead(DeathType.bomb);
+            player.Dead(DeathType.Ground);
             Destroy(gameObject);
         }
     }
