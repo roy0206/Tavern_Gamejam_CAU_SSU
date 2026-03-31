@@ -55,7 +55,17 @@ public class DataManager : Singleton<DataManager>
             savableObject.LoadData(data);
         }
     }
-
+    
+    public void NewGame() {
+        fileDataHandler.DeleteSave();
+        InitGame();
+        
+        savableObjects = FindAllSavableObjects();
+        foreach (ISavable savableObject in savableObjects)
+        {
+            savableObject.LoadData(data);
+        }
+    }
     private void OnApplicationQuit()
     {
         SaveGame();
@@ -104,6 +114,25 @@ public class FileDataHandler
             }
         }
         return loadedData;
+    }
+    public bool DeleteSave()
+    {
+        string fullPath = Path.Combine(dataDirectoryPath, dataFileName);
+        try
+        {
+            if (File.Exists(fullPath)) {
+                File.Delete(fullPath);
+                Debug.Log(fullPath);
+                return true;
+            }
+            Debug.LogWarning("No save file");
+            return false;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+            return false;
+        }
     }
 
     public void Save(Database data)

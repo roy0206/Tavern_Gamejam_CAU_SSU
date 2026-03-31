@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -27,7 +28,7 @@ public class StartSceneManager : MonoBehaviour
         stopButton.gameObject.AddComponent<ButtonHover>();
         continueButton.gameObject.AddComponent<ButtonHover>();
         
-        playButton.onClick.AddListener(() =>
+        continueButton.onClick.AddListener(() =>
         {
            SceneManager.LoadScene("Map1"); 
         });
@@ -40,9 +41,9 @@ public class StartSceneManager : MonoBehaviour
 #endif
         });
 
-        continueButton.onClick.AddListener(() =>
+        playButton.onClick.AddListener(() =>
         {
-            
+            StartCoroutine(NewGame());
         });
         _originalScale = logoText.fontSize;
     }
@@ -58,5 +59,13 @@ public class StartSceneManager : MonoBehaviour
 
     }
 
+    IEnumerator NewGame()
+    {
+        DataManager.Instance.NewGame();
+        yield return new WaitForSeconds(0.3f);
+        
+        SceneManager.LoadScene("Map1"); 
+
+    }
 
 }
