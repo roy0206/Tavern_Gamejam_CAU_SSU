@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8747226664423465609}
   - component: {fileID: 2629008739044522882}
   - component: {fileID: 6369649385230674574}
+  - component: {fileID: -4117991025153891513}
   m_Layer: 0
   m_Name: Bubble
   m_TagString: Untagged
@@ -106,8 +107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf386ed0c0d1a14295c4deee2c29003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bubble
-  player: {fileID: 0}
-  deathType: 0
   point1: {fileID: 0}
   point2: {fileID: 0}
   timePerMove: 5
@@ -175,3 +174,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &-4117991025153891513
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3594082726342403393}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1f11d8a207b464e4ab444ad07e1aae31, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -16,7 +16,7 @@ public class PlayerDeadState : State<Player>
                 break;
             case DeathType.Bitten:
                 player.GetModule<BloodEmiter>().Bleed(40, false);
-                
+                AudioManager.Instance.PlaySound("Bite", player.transform.root, 1, 1);
                 break;
             case DeathType.Stab:
                 player.GetModule<BloodEmiter>().Bleed(20, true);
