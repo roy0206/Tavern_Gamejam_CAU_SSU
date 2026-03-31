@@ -12,7 +12,7 @@ public class Piranha : Entity_baseclass
     State state_pira;
 
     Rigidbody2D rb;
-
+    SpriteRenderer sr;
     float MoveTimer;
     float Power = 8f;
     float detectradius = 5f;
@@ -39,6 +39,7 @@ public class Piranha : Entity_baseclass
     {
         state_pira = State.idle;
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -162,11 +163,23 @@ public class Piranha : Entity_baseclass
             MoveTimer = Random.Range(0.5f, 1.5f);
 
             moveDir = new Vector2(
-                Random.Range(-1f, 1f),
+                Random.Range(-3f, 3f),
                 Random.Range(-0.2f, 0.3f)
             ).normalized;
         }
 
+        if (HitWall(moveDir))
+        {
+            moveDir = -moveDir; 
+        }
+        if (moveDir.x != 0)
+            sr.flipX = moveDir.x > 0;
+
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            Quaternion.identity,
+            Time.deltaTime * 2f
+        );
         rb.AddForce(moveDir * (Power * 0.3f));
     }
 
@@ -183,6 +196,14 @@ public class Piranha : Entity_baseclass
 
         Vector2 dir = (Playertransform.position - transform.position).normalized;
 
+        sr.flipX = Playertransform.position.x > transform.position.x;
+        float angle = dir.y * 30f;
+
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            Quaternion.Euler(0, 0, angle),
+            Time.deltaTime * 5f
+        );
         rb.AddForce(dir * Power);
         rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, MaxSpeed);
     }
@@ -223,12 +244,12 @@ public class Piranha : Entity_baseclass
             if (Random.Range(0, 2) == 0 && PlayerBlood == false)
             {
                 if (!other.TryGetComponent<Player>(out var player)) return;
-                 player.Dead(DeathType.Bitten);
+              player.Dead(DeathType.Bitten);
             }
             else if (Random.Range(0, 2) == 0 && PlayerBlood == true)
             {
                 if (!other.TryGetComponent<Player>(out var player)) return;
-                player.Dead(DeathType.Bitten);
+              player.Dead(DeathType.Bitten);
             }
             else
             {
@@ -236,5 +257,29 @@ public class Piranha : Entity_baseclass
                 PlayerBlood = true;
             }
         }
+    }
+    bool HitWall(Vector2 dir)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(
+            transform.position,
+            dir,
+            1f,
+            LayerMask.GetMask("Floor")); 
+
+        return hit.collider != null;
+    }
+
+    void LookAtDirection(Vector2 dir)
+    {
+        if (dir.sqrMagnitude < 0.001f) return;
+
+        sr.flipX = dir.x > 0;
+
+        float angle = dir.y * 30f; 
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            Quaternion.Euler(0, 0, angle),
+            Time.deltaTime * 5f
+        );
     }
 }

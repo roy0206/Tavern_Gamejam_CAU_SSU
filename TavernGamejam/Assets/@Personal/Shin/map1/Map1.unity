@@ -19175,6 +19175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Piranha
   PlayerBlood: 0
+  MaxSpeed: 5.5
   waterTop: 0
   waterBottom: 0
   waterLeft: 0
@@ -20134,7 +20135,7 @@ SpriteRenderer:
   m_Size: {x: 0.15, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!4 &109624287
 Transform:
@@ -20261,7 +20262,7 @@ SpriteRenderer:
   m_Size: {x: 0.15, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!4 &119201298
 Transform:
@@ -22139,7 +22140,7 @@ SpriteRenderer:
   m_Size: {x: 0.15, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!4 &288114102
 Transform:
@@ -23856,6 +23857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Piranha
   PlayerBlood: 0
+  MaxSpeed: 5.5
   waterTop: -0.5
   waterBottom: -6
   waterLeft: 9
@@ -24015,10 +24017,11 @@ Transform:
   m_GameObject: {fileID: 457538116}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.74, y: -2.99, z: 0}
+  m_LocalPosition: {x: 11.56, y: -2.99, z: 0}
   m_LocalScale: {x: 4.4471, y: 4.4471, z: 4.4471}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 603961702}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &462024460
@@ -24958,7 +24961,7 @@ SpriteRenderer:
   m_Size: {x: 0.15, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!4 &547479898
 Transform:
@@ -25290,6 +25293,84 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &603961701
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 603961702}
+  - component: {fileID: 603961703}
+  m_Layer: 13
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &603961702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603961701}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 457538122}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &603961703
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603961701}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.008299828, y: -0.0028696172}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.30835605, y: 0.24175227}
+  m_EdgeRadius: 0
 --- !u!1 &604787116
 GameObject:
   m_ObjectHideFlags: 0
@@ -25635,6 +25716,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6200111420513484578, guid: ee3ff20701b3e6c40b358b09159e1dda, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627497203183867709, guid: ee3ff20701b3e6c40b358b09159e1dda, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8313810449844244832, guid: ee3ff20701b3e6c40b358b09159e1dda, type: 3}
@@ -26707,7 +26792,7 @@ SpriteRenderer:
   m_Size: {x: 0.15, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!4 &775402817
 Transform:
@@ -28210,6 +28295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Piranha
   PlayerBlood: 0
+  MaxSpeed: 5.5
   waterTop: 0
   waterBottom: 0
   waterLeft: 0
@@ -28603,6 +28689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Piranha
   PlayerBlood: 0
+  MaxSpeed: 5.5
   waterTop: 0
   waterBottom: 0
   waterLeft: 0
@@ -29068,7 +29155,7 @@ SpriteRenderer:
   m_Size: {x: 0.15, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!4 &946032480
 Transform:
@@ -33336,6 +33423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Piranha
   PlayerBlood: 0
+  MaxSpeed: 5.5
   waterTop: 0
   waterBottom: 0
   waterLeft: 0
@@ -34033,6 +34121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Piranha
   PlayerBlood: 0
+  MaxSpeed: 5.5
   waterTop: 0
   waterBottom: 0
   waterLeft: 0
@@ -36733,7 +36822,7 @@ SpriteRenderer:
   m_Size: {x: 0.15, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1664401662
 Transform:
@@ -37759,6 +37848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Piranha
   PlayerBlood: 0
+  MaxSpeed: 5.5
   waterTop: 0
   waterBottom: 0
   waterLeft: 0
@@ -39193,7 +39283,7 @@ SpriteRenderer:
   m_Size: {x: 0.15, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1975540000
 Transform:
