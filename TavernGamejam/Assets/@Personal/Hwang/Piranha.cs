@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Piranha : Entity_baseclass
 {
@@ -30,24 +31,25 @@ public class Piranha : Entity_baseclass
     Entity_baseclass eb;
     GameObject playerobj;
 
-    [SerializeField] LayerMask waterLayer;
-
-    bool isInWater = false; 
+    public LayerMask waterLayer;
 
     void Start()
     {
         state_pira = State.idle;
         rb = GetComponent<Rigidbody2D>();
-        eb = GetComponent<Entity_baseclass>(); 
     }
 
     void Update()
     {
+
+        bool isInWater = Physics2D.OverlapPoint(transform.position, waterLayer);
+
         if (!isInWater)
         {
             rb.linearVelocity = Vector2.zero;
             return;
         }
+
 
         if (PlayerBlood == false)
         {
@@ -58,6 +60,7 @@ public class Piranha : Entity_baseclass
             {
                 if (t.CompareTag("Player"))
                 {
+
                     if (Physics2D.OverlapPoint(t.transform.position, waterLayer))
                     {
                         isPlayer = true;
@@ -151,25 +154,25 @@ public class Piranha : Entity_baseclass
         detectradius = 5f;
     }
 
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectradius);
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (((1 << other.gameObject.layer) & waterLayer) != 0)
-        {
-            isInWater = true;
-        }
-
         if (other.CompareTag("Player"))
         {
             if (Random.Range(0, 2) == 0 && PlayerBlood == false)
             {
-                eb.deathType = DeathType.Bitten;
-                eb.player.Dead(eb.deathType);
+                if (!other.TryGetComponent<Player>(out var player)) return;
+                player.Dead(DeathType.Bitten);
             }
             else if (Random.Range(0, 2) == 0 && PlayerBlood == true)
             {
-                eb.deathType = DeathType.Bitten;
-                eb.player.Dead(eb.deathType);
+                if (!other.TryGetComponent<Player>(out var player)) return;
+                player.Dead(DeathType.Bitten);
             }
             else
             {
@@ -177,20 +180,5 @@ public class Piranha : Entity_baseclass
                 PlayerBlood = true;
             }
         }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (((1 << other.gameObject.layer) & waterLayer) != 0)
-        {
-            isInWater = false;
-            rb.linearVelocity = Vector2.zero;
-        }
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectradius);
     }
 }

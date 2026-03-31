@@ -3,7 +3,6 @@ using UnityEngine;
 public class fish_food : Entity_baseclass
 {
 
-    Entity_baseclass eb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,9 +17,10 @@ public class fish_food : Entity_baseclass
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("player"))
+        if (collision.CompareTag("Player"))
         {
-            eb.player.DashCooltime *= 4 / 5;
+            if (!collision.TryGetComponent<Player>(out var player)) return;
+            player.DashCooltime *= 4 / 5;
         }
     }
 }
