@@ -119,16 +119,16 @@ public class Water : MonoBehaviour
     {
         int minIndex = Mathf.FloorToInt(settings.nodePerUnit * (min - bounds.xMin));
         int maxIndex = Mathf.CeilToInt(settings.nodePerUnit * (max - bounds.xMin)) + 1;
-        minIndex = Mathf.Max(minIndex, 0);
-        maxIndex = Mathf.Min(maxIndex, maxNodeCount);
+        minIndex = Mathf.Clamp(minIndex, 0, maxNodeCount);
+        maxIndex = Mathf.Clamp(maxIndex, 0, maxNodeCount);
         return new RangeInt(minIndex, maxIndex - minIndex);
     }
     public RangeInt InnerIndexRange(float min, float max)
     {
         int minIndex = Mathf.CeilToInt(settings.nodePerUnit * (min - bounds.xMin));
         int maxIndex = Mathf.FloorToInt(settings.nodePerUnit * (max - bounds.xMin)) + 1;
-        minIndex = Mathf.Max(minIndex, 0);
-        maxIndex = Mathf.Min(maxIndex, maxNodeCount);
+        minIndex = Mathf.Clamp(minIndex, 0, maxNodeCount);
+        maxIndex = Mathf.Clamp(maxIndex, 0, maxNodeCount);
         return new RangeInt(minIndex, maxIndex - minIndex);
     }
     void Reset()

@@ -36,10 +36,10 @@ public class WaterSystem
     void Deregister_Internal(Water water) => _waters.Remove(water);
 
     void Update()
-    {
+    { 
         UpdatePhysics();
         
-        foreach(var water in _simulationData.waters)
+        /*foreach(var water in _simulationData.waters)
         {
             var nodeRange = _simulationData.mappingData.GetNodeRange(water);
             var waterRange = _simulationData.mappingData.GetWaterRange(water);
@@ -50,7 +50,7 @@ public class WaterSystem
                 float y = _simulationData.positions[i] + water.bounds.yMax;
                 Debug.DrawLine(new Vector3(x,y-0.1f,0),new Vector3(x,y+0.1f,0));
             }
-        }
+        }*/
     }
 
     bool GetPositions_Internal(Water water, out NativeArray<float> positions, out RangeInt waterRange)
