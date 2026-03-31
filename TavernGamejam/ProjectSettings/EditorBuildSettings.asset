@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/Start.unity
+    path: Assets/Scenes/Start_.unity
     guid: 61fe5730d941c415b940b8c2a606e210
   - enabled: 1
     path: Assets/Scenes/Main.unity
@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/@Personal/Ryu/Loading.unity
     guid: f14439b058bcc9d40bea5a0f1ab2c5eb
   - enabled: 0
-    path: Assets/@Personal/Ryu/Scene2.unity
+    path: Assets/Scenes/RecovoryScene.unity
     guid: 7e729e9588ded5443ab80c3b8a741226
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
