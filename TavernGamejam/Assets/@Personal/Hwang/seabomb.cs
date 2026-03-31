@@ -18,15 +18,12 @@ public class seabomb : Entity_baseclass
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("player")){
-            eb.player.DashCooltime *= 4 / 5;
+        if (collision.CompareTag("Player")){
+            if (!collision.TryGetComponent<Player>(out var player)) return;
+            player.Dead(DeathType.bomb);
+            Destroy(gameObject);
         }
     }
-    void bomb()
-    {
-        eb.deathType = DeathType.bomb;
-        eb.player.Dead(eb.deathType);
-        Destroy(gameObject);
-    }
+  
    
     }
