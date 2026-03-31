@@ -19,7 +19,6 @@ public class StartSceneManager : MonoBehaviour
     public float speed = 1.5f;
     
     float _originalScale;
-
     
     
     public void Start()
