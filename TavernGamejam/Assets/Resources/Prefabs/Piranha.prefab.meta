@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:TavernGamejam/Assets/@Personal/Shin/map1/Map1.unity.meta
+guid: e13805b40cd722b41a948c5480757422
+DefaultImporter:
+========
 guid: 0f1dd3ac2cb9f2c43b2a4316d8974991
 PrefabImporter:
+>>>>>>>> 56223da6c9c92e812377c1bfb92a36e45009e18b:TavernGamejam/Assets/Resources/Prefabs/Piranha.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
