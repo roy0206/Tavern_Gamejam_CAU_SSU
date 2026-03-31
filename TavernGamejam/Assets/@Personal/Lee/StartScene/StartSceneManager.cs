@@ -30,7 +30,7 @@ public class StartSceneManager : MonoBehaviour
         
         continueButton.onClick.AddListener(() =>
         {
-           SceneManager.LoadScene("Map1"); 
+           SceneController.Instance.LoadScene("Main"); 
         });
         
         stopButton.onClick.AddListener(() =>
@@ -64,7 +64,7 @@ public class StartSceneManager : MonoBehaviour
         DataManager.Instance.NewGame();
         yield return new WaitForSeconds(0.3f);
         
-        SceneManager.LoadScene("Map1"); 
+        SceneController.Instance.LoadScene("Main"); 
 
     }
 
