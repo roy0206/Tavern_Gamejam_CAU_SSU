@@ -127,7 +127,6 @@ public class SceneController : Singleton<SceneController>
 
         // ── 1. 이벤트: 씬 로드 시작 ──
         NotifyLoadStart(config.targetSceneName);
-        DataManager.Instance.SaveGame();
 
         // ── 2. 현재 씬 퇴장 전환 효과 ──
         yield return StartCoroutine(PlayTransition(config.exitTransition, config.transitionDuration));
@@ -169,13 +168,11 @@ public class SceneController : Singleton<SceneController>
 
         asyncOp.allowSceneActivation = true;
         yield return asyncOp;
-        DataManager.Instance.LoadGame();
+
         yield return StartCoroutine(PlayTransition(config.enterTransition, config.transitionDuration));
 
         IsTransitioning = false;
-
         NotifyLoadComplete(config.targetSceneName);
-
     }
 
 
