@@ -338,6 +338,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e0a2eb43e29864ca7648ac94158ffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Screw
+  player: {fileID: 0}
+  deathType: 4
   pullPower: 11
   maxDistance: 7
 --- !u!61 &20145586
@@ -19291,6 +19293,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d7154c60139d94a98cbc4196fd2576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Piranha
+  player: {fileID: 0}
+  deathType: 2
   PlayerBlood: 0
   waterLayer:
     serializedVersion: 2
@@ -20171,6 +20175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158def2fbafd466429d9cf1be7728ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::fish_food
+  player: {fileID: 0}
+  deathType: 0
 --- !u!95 &109624285
 Animator:
   serializedVersion: 7
@@ -20250,7 +20256,7 @@ SpriteRenderer:
   m_Size: {x: 0.15, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!4 &109624287
 Transform:
@@ -20298,6 +20304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158def2fbafd466429d9cf1be7728ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::fish_food
+  player: {fileID: 0}
+  deathType: 0
 --- !u!95 &119201296
 Animator:
   serializedVersion: 7
@@ -20377,7 +20385,7 @@ SpriteRenderer:
   m_Size: {x: 0.15, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!4 &119201298
 Transform:
@@ -20734,6 +20742,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 756386f56a3303e41b0786ec3222755b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovingObject
+  player: {fileID: 0}
+  deathType: 0
   point1: {fileID: 1021287846}
   point2: {fileID: 1904063767}
   timePerMove: 1
@@ -21802,6 +21812,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e0a2eb43e29864ca7648ac94158ffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Screw
+  player: {fileID: 0}
+  deathType: 4
   pullPower: 11
   maxDistance: 7
 --- !u!1 &253433483
@@ -23764,6 +23776,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d7154c60139d94a98cbc4196fd2576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Piranha
+  player: {fileID: 0}
+  deathType: 2
   PlayerBlood: 0
   waterLayer:
     serializedVersion: 2
@@ -24650,6 +24664,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09ad316f24fd50946b076a8e23200959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlasticBag
+  player: {fileID: 0}
+  deathType: 0
   detectRange: 1
 --- !u!4 &536929180
 Transform:
@@ -24697,6 +24713,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158def2fbafd466429d9cf1be7728ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::fish_food
+  player: {fileID: 0}
+  deathType: 0
 --- !u!95 &547479896
 Animator:
   serializedVersion: 7
@@ -24776,7 +24794,7 @@ SpriteRenderer:
   m_Size: {x: 0.15, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!4 &547479898
 Transform:
@@ -24910,6 +24928,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09ad316f24fd50946b076a8e23200959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlasticBag
+  player: {fileID: 0}
+  deathType: 0
   detectRange: 1
 --- !u!4 &554349542
 Transform:
@@ -26341,6 +26361,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158def2fbafd466429d9cf1be7728ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::fish_food
+  player: {fileID: 0}
+  deathType: 0
 --- !u!95 &775402815
 Animator:
   serializedVersion: 7
@@ -26420,7 +26442,7 @@ SpriteRenderer:
   m_Size: {x: 0.15, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!4 &775402817
 Transform:
@@ -26514,6 +26536,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 494742c1aefbd094585dc96767be3407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Oil
+  player: {fileID: 0}
+  deathType: 0
 --- !u!212 &781039948
 SpriteRenderer:
   serializedVersion: 2
@@ -26724,6 +26748,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e0a2eb43e29864ca7648ac94158ffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Screw
+  player: {fileID: 0}
+  deathType: 4
   pullPower: 11
   maxDistance: 7
 --- !u!95 &786084426
@@ -27176,6 +27202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09ad316f24fd50946b076a8e23200959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlasticBag
+  player: {fileID: 0}
+  deathType: 0
   detectRange: 1
 --- !u!4 &805751583
 Transform:
@@ -27312,7 +27340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c997e503371f3f4db0d31c6a31ba63b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BubbleSpawner
-  prefab: {fileID: 2591780664747309215, guid: 2b659b0f71e755b439f95cb999d5b661, type: 3}
+  prefab: {fileID: 8747226664423465609, guid: 39f59192b021cf6478edd0b332d1498e, type: 3}
   p1: {fileID: 403696392}
   p2: {fileID: 1874918389}
   timePerMove: 3
@@ -27409,6 +27437,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 756386f56a3303e41b0786ec3222755b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovingObject
+  player: {fileID: 0}
+  deathType: 0
   point1: {fileID: 700748533}
   point2: {fileID: 1005755415}
   timePerMove: 2.5
@@ -27922,6 +27952,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d7154c60139d94a98cbc4196fd2576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Piranha
+  player: {fileID: 0}
+  deathType: 2
   PlayerBlood: 0
   waterLayer:
     serializedVersion: 2
@@ -28314,6 +28346,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d7154c60139d94a98cbc4196fd2576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Piranha
+  player: {fileID: 0}
+  deathType: 2
   PlayerBlood: 0
   waterLayer:
     serializedVersion: 2
@@ -28523,6 +28557,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 756386f56a3303e41b0786ec3222755b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovingObject
+  player: {fileID: 0}
+  deathType: 0
   point1: {fileID: 1399540840}
   point2: {fileID: 1498880092}
   timePerMove: 5
@@ -28779,7 +28815,7 @@ SpriteRenderer:
   m_Size: {x: 0.15, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!4 &946032480
 Transform:
@@ -28808,6 +28844,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158def2fbafd466429d9cf1be7728ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::fish_food
+  player: {fileID: 0}
+  deathType: 0
 --- !u!1 &956289425
 GameObject:
   m_ObjectHideFlags: 0
@@ -31325,6 +31363,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 756386f56a3303e41b0786ec3222755b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovingObject
+  player: {fileID: 0}
+  deathType: 0
   point1: {fileID: 1069807611}
   point2: {fileID: 166232297}
   timePerMove: 1
@@ -32886,6 +32926,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d7154c60139d94a98cbc4196fd2576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Piranha
+  player: {fileID: 0}
+  deathType: 2
   PlayerBlood: 0
   waterLayer:
     serializedVersion: 2
@@ -33582,6 +33624,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d7154c60139d94a98cbc4196fd2576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Piranha
+  player: {fileID: 0}
+  deathType: 2
   PlayerBlood: 0
   waterLayer:
     serializedVersion: 2
@@ -33864,6 +33908,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09ad316f24fd50946b076a8e23200959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlasticBag
+  player: {fileID: 0}
+  deathType: 0
   detectRange: 1
 --- !u!4 &1365539215
 Transform:
@@ -34400,6 +34446,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf386ed0c0d1a14295c4deee2c29003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bubble
+  player: {fileID: 0}
+  deathType: 0
   point1: {fileID: 510928515}
   point2: {fileID: 1646410219}
   timePerMove: 2.5
@@ -35039,6 +35087,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 494742c1aefbd094585dc96767be3407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Oil
+  player: {fileID: 0}
+  deathType: 0
 --- !u!212 &1526120508
 SpriteRenderer:
   serializedVersion: 2
@@ -35323,6 +35373,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 756386f56a3303e41b0786ec3222755b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovingObject
+  player: {fileID: 0}
+  deathType: 0
   point1: {fileID: 1878624693}
   point2: {fileID: 1961980915}
   timePerMove: 1
@@ -35692,6 +35744,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e0a2eb43e29864ca7648ac94158ffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Screw
+  player: {fileID: 0}
+  deathType: 4
   pullPower: 11
   maxDistance: 7
 --- !u!95 &1571471880
@@ -35862,7 +35916,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 543e7158878a8f6428488f7e0c8464fe, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -35886,7 +35940,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 252a68a24e9b9c54fa56e21e1a74b1b4, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -35907,6 +35961,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09ad316f24fd50946b076a8e23200959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlasticBag
+  player: {fileID: 0}
+  deathType: 0
   detectRange: 1
 --- !u!4 &1597523023
 Transform:
@@ -36135,6 +36191,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 756386f56a3303e41b0786ec3222755b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovingObject
+  player: {fileID: 0}
+  deathType: 0
   point1: {fileID: 351835308}
   point2: {fileID: 1409943867}
   timePerMove: 1
@@ -36203,6 +36261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158def2fbafd466429d9cf1be7728ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::fish_food
+  player: {fileID: 0}
+  deathType: 0
 --- !u!95 &1664401660
 Animator:
   serializedVersion: 7
@@ -36282,7 +36342,7 @@ SpriteRenderer:
   m_Size: {x: 0.15, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!4 &1664401662
 Transform:
@@ -36859,6 +36919,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 494742c1aefbd094585dc96767be3407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Oil
+  player: {fileID: 0}
+  deathType: 0
 --- !u!61 &1744032399
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37327,6 +37389,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d7154c60139d94a98cbc4196fd2576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Piranha
+  player: {fileID: 0}
+  deathType: 2
   PlayerBlood: 0
   waterLayer:
     serializedVersion: 2
@@ -37905,6 +37969,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf386ed0c0d1a14295c4deee2c29003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bubble
+  player: {fileID: 0}
+  deathType: 0
   point1: {fileID: 203947116}
   point2: {fileID: 533910914}
   timePerMove: 2.5
@@ -38407,6 +38473,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e0a2eb43e29864ca7648ac94158ffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Screw
+  player: {fileID: 0}
+  deathType: 4
   pullPower: 11
   maxDistance: 7
 --- !u!95 &1958859667
@@ -38567,6 +38635,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158def2fbafd466429d9cf1be7728ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::fish_food
+  player: {fileID: 0}
+  deathType: 0
 --- !u!95 &1975539998
 Animator:
   serializedVersion: 7
@@ -38646,7 +38716,7 @@ SpriteRenderer:
   m_Size: {x: 0.15, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!4 &1975540000
 Transform:
@@ -39024,6 +39094,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 494742c1aefbd094585dc96767be3407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Oil
+  player: {fileID: 0}
+  deathType: 0
 --- !u!212 &2040825151
 SpriteRenderer:
   serializedVersion: 2
@@ -39306,6 +39378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09ad316f24fd50946b076a8e23200959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlasticBag
+  player: {fileID: 0}
+  deathType: 0
   detectRange: 1
 --- !u!4 &2046552741
 Transform:
@@ -39890,6 +39964,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09ad316f24fd50946b076a8e23200959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlasticBag
+  player: {fileID: 0}
+  deathType: 0
   detectRange: 1
 --- !u!4 &2117185891
 Transform:
