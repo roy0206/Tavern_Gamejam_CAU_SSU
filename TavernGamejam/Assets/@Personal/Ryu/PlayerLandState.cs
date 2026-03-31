@@ -7,8 +7,6 @@ public class PlayerLandState : State<Player>
         player.GetModule<Oxygen>().AddChange("Land", -5f);
 
 
-        player.GetModule<Effector>().RemoveEffect<PlasticBagEffect>();
-
         Debug.Log("Enter Land");
     }
 
