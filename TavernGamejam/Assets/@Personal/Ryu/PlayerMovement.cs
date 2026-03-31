@@ -36,6 +36,11 @@ public class PlayerMovement : Module
         dashCurtime += TimeManager.FixedDeltaTime;
     }
 
+    public void Eat()
+    {
+        dashCurtime += player.DashCooltime;
+    }
+
     public void SetLand()
     {
         UserInput.Instance.UnbindKeyDown(KeyCode.Space, Dash);
@@ -119,6 +124,7 @@ public class PlayerMovement : Module
         allowJump = false;
         float curTime = 0;
         float moveX = new Vector2(UserInput.Instance.MoveDirectionRaw.x, 0).normalized.x;
+        if (moveX == 0) moveX = -1;
         while (Physics2D.Raycast(player.transform.position, - player.transform.up, playerHeight / 2 + 0.1f, LayerMask.GetMask("Floor")))
         {
             outerForce["Slip"] = new Vector2(moveX * 10, 0);

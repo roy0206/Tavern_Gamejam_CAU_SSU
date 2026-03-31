@@ -20,7 +20,8 @@ public class fish_food : Entity_baseclass
         if (collision.CompareTag("Player"))
         {
             if (!collision.TryGetComponent<Player>(out var player)) return;
-            player.DashCooltime *= 4 / 5;
+            player.GetModule<PlayerMovement>().Eat();
+            Destroy(gameObject);
         }
     }
 }
