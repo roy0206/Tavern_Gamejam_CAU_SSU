@@ -9,6 +9,9 @@ public class PlayerDeadState : State<Player>
         player.RemoveModule<DashIndicator>();
         Debug.Log("PlayerHasDead");
 
+        AudioManager.Instance.StopSound(player.bgmId);
+        AudioManager.Instance.PlaySound("Dead", player.transform.root, 1, 1);
+
         switch (player.DeathType)
         {
             case DeathType.Suffocated:

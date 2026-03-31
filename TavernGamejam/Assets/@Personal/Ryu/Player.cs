@@ -17,9 +17,9 @@ public class Player : MonoThing
     [SerializeField] float surfaceLevel;
 
     public DeathType DeathType => deathType;
-    DeathType deathType = DeathType.NotYetDead; 
+    DeathType deathType = DeathType.NotYetDead;
 
-
+    [HideInInspector] public int bgmId;
 
     new protected void Awake()
     {
@@ -36,7 +36,7 @@ public class Player : MonoThing
             }, "Land");
         AddModule(new BloodEmiter(this)).Init();
 
-
+        AudioManager.Instance.PlaySound("BGM", transform.root, 1, 999);
     }
 
     // Update is called once per frame
