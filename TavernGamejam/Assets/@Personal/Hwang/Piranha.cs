@@ -197,14 +197,10 @@ public class Piranha : Entity_baseclass
 
         Vector2 dir = (Playertransform.position - transform.position).normalized;
 
-        sr.flipX = Playertransform.position.x > transform.position.x;
-        float angle = dir.y * 30f;
+        sr.flipY = dir.x < 0;
 
-        transform.rotation = Quaternion.Slerp(
-            transform.rotation,
-            Quaternion.Euler(0, 0, angle),
-            Time.deltaTime * 5f
-        );
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
+        
         rb.AddForce(dir * Power);
         rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, MaxSpeed);
     }
