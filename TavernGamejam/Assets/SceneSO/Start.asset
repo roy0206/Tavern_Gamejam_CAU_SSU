@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c6846a869e0cd47af1d423a3b9fc65, type: 3}
   m_Name: Start
   m_EditorClassIdentifier: Assembly-CSharp::SceneSO
-  targetSceneName: Start_
+  targetSceneName: Start
   useLoadingScene: 0
   loadingSceneName: 
   leastHoldingDuration: 0
