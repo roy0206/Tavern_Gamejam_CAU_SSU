@@ -8,6 +8,7 @@ public class StartSceneManager : MonoBehaviour
 {
     public Button playButton;
     public Button stopButton;
+    public Button continueButton;
 
     public TMP_Text logoText;
     
@@ -18,8 +19,14 @@ public class StartSceneManager : MonoBehaviour
     
     float _originalScale;
 
+    
+    
     public void Start()
     {
+        playButton.gameObject.AddComponent<ButtonHover>();
+        stopButton.gameObject.AddComponent<ButtonHover>();
+        continueButton.gameObject.AddComponent<ButtonHover>();
+        
         playButton.onClick.AddListener(() =>
         {
            SceneManager.LoadScene("Map1"); 
@@ -33,6 +40,10 @@ public class StartSceneManager : MonoBehaviour
 #endif
         });
 
+        continueButton.onClick.AddListener(() =>
+        {
+            
+        });
         _originalScale = logoText.fontSize;
     }
 
@@ -44,8 +55,6 @@ public class StartSceneManager : MonoBehaviour
         float t = (Mathf.Sin(Time.time * speed) + 1f) / 2f; // 0 ~ 1
         float scale = Mathf.Lerp(minScale, maxScale, t);
         logoText.fontSize = _originalScale * scale;
-        
-
 
     }
 
