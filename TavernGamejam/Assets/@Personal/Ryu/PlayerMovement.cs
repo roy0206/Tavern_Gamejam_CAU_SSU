@@ -11,8 +11,10 @@ public class PlayerMovement : Module
     bool onLand;
     bool isSit;
     float dashCurtime = 0;
+    public float DashCurtime => dashCurtime;
     bool allowJump = true;
     float speed;
+    RaycastHit2D floorHit;
 
     Dictionary<string, Vector2> outerForce = new();
     public PlayerMovement(MonoThing thing) : base(thing) {
@@ -45,6 +47,8 @@ public class PlayerMovement : Module
         player.Rigidbody.linearDamping = 0;
         player.transform.DORotate(new Vector3(0, 0, 0), 1f);
         player.Animator.SetBool("Swim", false);
+
+        player.GetModule<DashIndicator>().SetIndicator(false);
     }
 
     public void SetWater()
@@ -58,6 +62,7 @@ public class PlayerMovement : Module
         player.Rigidbody.linearDamping = 4;
         SitUp();
         player.Animator.SetBool("Walk", false);
+        player.GetModule<DashIndicator>().SetIndicator(true);
     }
 
     
@@ -73,7 +78,10 @@ public class PlayerMovement : Module
         {
             player.Rigidbody.linearVelocity += force;
         }
-
+        floorHit = default;
+        floorHit = Physics2D.Raycast(player.transform.position, -player.transform.up, playerHeight / 2 + 0.1f, LayerMask.GetMask("Floor"));
+        if (floorHit)
+            player.GetModule<Effector>().RemoveEffect<PlasticBagEffect>();
     }
     void WaterMove()
     {
@@ -127,10 +135,8 @@ public class PlayerMovement : Module
 
     public void Jump()
     {
-        if (!allowJump || isSit) return;
-        RaycastHit2D hit = Physics2D.Raycast(player.transform.position, -player.transform.up, playerHeight / 2 + 0.1f, LayerMask.GetMask("Floor"));
-        if(hit)
-            player.Rigidbody.AddForce(Vector2.up * player.JumpPower, ForceMode2D.Impulse);
+        if (!allowJump || isSit || floorHit == default) return;
+       player.Rigidbody.AddForce(Vector2.up * player.JumpPower, ForceMode2D.Impulse);
     }
 
     public void Dash()

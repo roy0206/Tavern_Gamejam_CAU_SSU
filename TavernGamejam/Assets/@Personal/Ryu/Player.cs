@@ -24,6 +24,7 @@ public class Player : MonoThing
     new protected void Awake()
     {
         base.Awake();
+        AddModule(new DashIndicator(this)).Init();
         AddModule(new PlayerMovement(this)).Init();
         AddModule(new Oxygen(this)).Init(100f);
         AddModule(new Effector(this)).Init();
@@ -34,6 +35,7 @@ public class Player : MonoThing
                 { "Dead", new PlayerDeadState()}
             }, "Land");
         AddModule(new BloodEmiter(this)).Init();
+
 
     }
 
