@@ -142,7 +142,15 @@ public class Piranha : Entity_baseclass
 
         Vector2 toPlayer = (Playertransform.position - transform.position).normalized;
 
+<<<<<<< Updated upstream
         rb.AddForce(toPlayer * Power);
+=======
+        sr.flipX = dir.x < 0;
+
+        transform.rotation = Quaternion.Euler(0,0,Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
+        
+        rb.AddForce(dir * Power);
+>>>>>>> Stashed changes
         rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, MaxSpeed);
     }
 
