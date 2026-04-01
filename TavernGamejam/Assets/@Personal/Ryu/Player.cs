@@ -36,7 +36,7 @@ public class Player : MonoThing
             }, "Land");
         AddModule(new BloodEmiter(this)).Init();
 
-        AudioManager.Instance.PlaySound("BGM", transform.root, 0.2f, 999);
+        bgmId = AudioManager.Instance.PlaySound("BGM", transform.root, 0.2f, 999);
     }
 
     // Update is called once per frame

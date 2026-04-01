@@ -17,8 +17,9 @@ public class AudioManager : Singleton<AudioManager>, ISceneEventListener
 
     [SerializeField] AudioSource channelPrefab;
 
-    void Awake()
+    new void Awake()
     {
+        base.Awake();
         activeSources = new();
         poolParent = transform;
         LoadAllSoundsFromResources();

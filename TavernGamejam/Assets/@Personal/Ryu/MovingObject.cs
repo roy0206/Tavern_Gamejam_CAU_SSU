@@ -39,4 +39,8 @@ public class MovingObject : Entity_baseclass
             Destroy(gameObject);
         });
     }
+    private void OnDestroy()
+    {
+        transform.DOKill();
+    }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Piranha : Entity_baseclass
@@ -238,23 +239,13 @@ public class Piranha : Entity_baseclass
         if (other.CompareTag("Player"))
         {
 
-            if (Random.Range(0, 2) == 0 && PlayerBlood == false)
-            {
-                if (!other.TryGetComponent<Player>(out var player)) return;
-                player.Dead(DeathType.Bitten);
-            }
-            else if (Random.Range(0, 2) == 0 && PlayerBlood == true)
-            {
-                if (!other.TryGetComponent<Player>(out var player)) return;
-                player.Dead(DeathType.Bitten);
-            }
-            else
-            {
-                playerobj = other.gameObject;
-                PlayerBlood = true;
-            }
+            if (!other.TryGetComponent<Player>(out var player)) return;
+            player.Dead(DeathType.Bitten);
+            
+
         }
     }
+
     bool HitWall(Vector2 dir)
     {
         RaycastHit2D hit = Physics2D.Raycast(

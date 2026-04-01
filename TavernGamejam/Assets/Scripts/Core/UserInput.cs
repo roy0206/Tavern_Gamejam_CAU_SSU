@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class UserInput : Singleton<UserInput>
 {
-    private Dictionary<KeyCode, Action> keyDownEvents = new();
-    private Dictionary<KeyCode, Action> keyUpEvents = new();
-    private Dictionary<KeyCode, Action> keyHoldEvents = new();
+    private Dictionary<KeyCode, Action> keyDownEvents;
+    private Dictionary<KeyCode, Action> keyUpEvents;
+    private Dictionary<KeyCode, Action> keyHoldEvents;
 
     public Action OnMouseDown;
     public Action OnMouseUp;
@@ -15,6 +15,14 @@ public class UserInput : Singleton<UserInput>
     public Vector2 MoveDirection => new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
     public Vector2 MoveDirectionRaw => new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
+    new private void Awake()
+    {
+        base.Awake();
+        keyDownEvents = new();
+        keyHoldEvents = new();
+        keyUpEvents = new();
+        print("USERINPUT");
+    }
 
     void Update()
     {
@@ -60,6 +68,8 @@ public class UserInput : Singleton<UserInput>
             keyDownEvents[key] = action;
         else
             keyDownEvents[key] += action;
+
+        print(keyDownEvents.Count);
     }
 
     public void BindKeyUp(KeyCode key, Action action)
@@ -80,6 +90,7 @@ public class UserInput : Singleton<UserInput>
 
     public void UnbindKeyDown(KeyCode key, Action action)
     {
+        print(keyDownEvents.Count);
         if (keyDownEvents.ContainsKey(key))
             keyDownEvents[key] -= action;
     }

@@ -31,9 +31,8 @@ public class PlayerMovement : Module
         LandMove();
         WaterMove();
 
-        outerForce.Clear();
-
         dashCurtime += TimeManager.FixedDeltaTime;
+        outerForce.Clear();
     }
 
     public void Eat()
@@ -112,7 +111,9 @@ public class PlayerMovement : Module
         foreach (var force in outerForce.Values)
         {
             player.Rigidbody.AddForce(force, ForceMode2D.Force);
+
         }
+
     }
 
     public void Slip()
@@ -125,12 +126,12 @@ public class PlayerMovement : Module
         float curTime = 0;
         float moveX = new Vector2(UserInput.Instance.MoveDirectionRaw.x, 0).normalized.x;
         if (moveX == 0) moveX = -1;
-        while (Physics2D.Raycast(player.transform.position, - player.transform.up, playerHeight / 2 + 0.1f, LayerMask.GetMask("Floor")))
+        while (floorHit != default)
         {
             outerForce["Slip"] = new Vector2(moveX * 10, 0);
             yield return null;
         }
-        while(curTime < 0.3)
+        while(curTime < 0.3f)
         {
             outerForce["Slip"] = new Vector2(moveX * 10, 0);
             curTime += TimeManager.DeltaTime;

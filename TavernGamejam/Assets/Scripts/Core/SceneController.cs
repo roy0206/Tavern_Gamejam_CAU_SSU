@@ -24,8 +24,9 @@ public class SceneController : Singleton<SceneController>
     private readonly List<ISceneEventListener> _listeners = new();
 
 
-    private void Awake()
+    new protected void Awake()
     {
+        base.Awake();
         BuildConfigMap();
         EnsureTransitionCanvas();
     }

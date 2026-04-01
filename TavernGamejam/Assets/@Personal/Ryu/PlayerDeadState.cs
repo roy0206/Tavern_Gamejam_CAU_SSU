@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 public class PlayerDeadState : State<Player>
 {
@@ -7,6 +8,7 @@ public class PlayerDeadState : State<Player>
         player.RemoveModule<PlayerMovement>();
         player.RemoveModule<Oxygen>();
         player.RemoveModule<DashIndicator>();
+        player.Animator.enabled = false;
         Debug.Log("PlayerHasDead");
 
         AudioManager.Instance.StopSound(player.bgmId);
@@ -15,11 +17,11 @@ public class PlayerDeadState : State<Player>
         switch (player.DeathType)
         {
             case DeathType.Suffocated:
-
+                player.SpriteRenderer.DOColor(new Color(0.2f, 0.2f, 0.2f), 1);
                 break;
             case DeathType.Bitten:
                 player.GetModule<BloodEmiter>().Bleed(40, false);
-                
+                AudioManager.Instance.PlaySound("Bite", player.transform.root, 1, 1);
                 break;
             case DeathType.Stab:
                 player.GetModule<BloodEmiter>().Bleed(20, true);
@@ -27,9 +29,12 @@ public class PlayerDeadState : State<Player>
                 break;
             case DeathType.Ground:
                 player.GetModule<BloodEmiter>().Bleed(300, false);
+                AudioManager.Instance.PlaySound("Stab", player.transform.root, 1, 1);
                 player.SpriteRenderer.enabled = false;
                 break;
         }
+        DOVirtual.DelayedCall(3, () => { SceneController.Instance.LoadScene("Main"); });
+
     }
 
     public override void Execute(Player player)
