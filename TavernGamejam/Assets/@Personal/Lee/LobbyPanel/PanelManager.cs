@@ -12,12 +12,13 @@ public class PanelManager : MonoBehaviour
     {
         goToLobbyButton.onClick.AddListener(() =>
         {
-            SceneManager.LoadScene("Start");
+            SceneController.Instance.LoadScene("Start");
         });
 
         continueButton.onClick.AddListener(() =>
         {
             panel.SetActive(false);
+            TimeManager.Instance.ChangeTimeScale(1);
         });
 
         UserInput.Instance.BindKeyDown(KeyCode.Escape, TogglePanel);

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class FinishComponent : MonoBehaviour
+public class FinishComponent : MonoBehaviour, ISavable
 {
     public GameObject finishPanel;
     public TMP_Text finishText;
@@ -18,8 +18,11 @@ public class FinishComponent : MonoBehaviour
     Vector2 _velocity;
     RectTransform _panelRect;
 
+    bool isTouched;
+
     void Start()
     {
+        isTouched = false;
         finishPanel.SetActive(false);
 
         _textRect = finishText.GetComponent<RectTransform>();
@@ -30,7 +33,8 @@ public class FinishComponent : MonoBehaviour
 
         finishButton.onClick.AddListener(() =>
         {
-            SceneManager.LoadScene("Start");
+
+            SceneController.Instance.LoadScene("Start");
         });
     }
 
@@ -87,8 +91,18 @@ public class FinishComponent : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            isTouched = true;
             finishPanel.SetActive(true);
             TimeManager.Instance.ChangeTimeScale(0);
         }
+    }
+
+    public void LoadData(Database data)
+    {
+    }
+
+    public void SaveData(ref Database data)
+    {
+        if (isTouched) data.isCleared = true;
     }
 }

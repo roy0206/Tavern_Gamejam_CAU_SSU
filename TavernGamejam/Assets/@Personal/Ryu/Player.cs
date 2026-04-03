@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 
-public class Player : MonoThing
+public class Player : MonoThing, ISavable
 {
     public float JumpPower => jumpPower;
     [SerializeField] float jumpPower;
@@ -48,8 +48,19 @@ public class Player : MonoThing
 
     public void Dead(DeathType deathType)
     {
+        if (deathType == DeathType.NotYetDead) return;
         this.deathType = deathType;
         GetModule<StateMachine<Player>>().ChangeState("Dead");
+    }
+
+    public void LoadData(Database data)
+    {
+
+    }
+
+    public void SaveData(ref Database data)
+    {
+        data.attempt += 1;
     }
 }
 

@@ -55,10 +55,19 @@ public class DataManager : Singleton<DataManager>
             savableObject.LoadData(data);
         }
     }
-    
+
+
     public void NewGame() {
+        bool isCleared = false;
+        data = fileDataHandler.Load();
+
+        if (data != null)
+            if (data.isCleared) isCleared = true;
+        
+
         fileDataHandler.DeleteSave();
         InitGame();
+        data.isCleared = isCleared;
         
         savableObjects = FindAllSavableObjects();
         foreach (ISavable savableObject in savableObjects)

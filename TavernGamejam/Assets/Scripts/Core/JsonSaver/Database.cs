@@ -8,8 +8,8 @@ using System;
 public class Database
 {
     public int checkpoint;
-
-
+    public int attempt;
+    public bool isCleared;
 
 
 
@@ -20,5 +20,7 @@ public class Database
     public Database()
     {
         checkpoint = 0;
+        attempt = 1;
+        isCleared = false;
     }
 }
